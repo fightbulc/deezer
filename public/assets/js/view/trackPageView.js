@@ -21,10 +21,10 @@ define(function(require){
     },
 
     playTrack: function(trackId){
-    	DZ.promisePlayerOnLoad.done(function(){    		
-			DZ.player.playTracks([trackId], 0, function(response){
-				console.log("track list", response.tracks);
-			});
+    	DZ.promisePlayerOnLoad.done(function(){
+  			DZ.player.playTracks([trackId], 0, function(response){
+  				console.log("track list", response.tracks);
+  			});
     	});
     }
   });

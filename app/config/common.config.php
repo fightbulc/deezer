@@ -24,6 +24,8 @@
     ),
 
     'deezer' => array(
+      'clientId' => '103961',
+      'clientSecret' => '1d19176572e51c4830ce4dbd10878737',
     ),
 
     'soundcloud' => array(

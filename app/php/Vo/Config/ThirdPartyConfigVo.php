@@ -4,8 +4,8 @@
 
   class ThirdPartyConfigVo extends \Simplon\Vo\Config\CoreThirdPartyConfigVo
   {
-    public function getSoundcloudConfig()
+    public function getDeezerConfig()
     {
-      return $this->getByKey('soundcloud');
+      return $this->getByKey('dezer');
     }
   }

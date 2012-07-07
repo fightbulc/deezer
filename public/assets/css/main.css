@@ -1,4 +1,16 @@
 
+#deezerPlayer {
+  position: absolute;
+  top: -300px;
+}
+
+#deezerPlayer.active {
+  top: auto;
+}
+
+h1 {
+  margin: 20px 0 30px;
+}
 
 .bubbles {
   position: relative;
@@ -18,6 +30,16 @@
 .bubble.bbl3 { background: #33a; }
 .bubble.bbl4 { background: #777; }
 .bubble.bbl5 { background: #0aa; }
+
+#pages {
+  position: relative;
+}
+
+#userWidget {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
 
 #pages .page {
   display: none;

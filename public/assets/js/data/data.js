@@ -13,12 +13,7 @@ define(function(require){
     return $.ajax({
       url:url,
       dataType:'jsonp',
-      data:_.extend({}, data, {output:'jsonp'}),
-      success:function(response){
-        if(_.has(response, 'error')){
-          console.log(['error!', response]);
-        }
-      }
+      data:_.extend({}, data, {output:'jsonp'})
     });
   };
 
@@ -32,10 +27,7 @@ define(function(require){
         "id":_.uniqueId(),
         "method":method,
         "params":parameters
-      }),
-      success:function(response){
-        console.log(['api', response]);
-      }
+      })
     });
   };
 

@@ -1,0 +1,32 @@
+<div class="btnsContainer clearfix">
+  <a class="backBtn button" href="/#!/events/">Back to Listing</a>
+  {{#prevUrlName}}<a class="prevBtn button" href="/#!/event/{{prevUrlName}}"><i>&#171;</i> Prev</a>{{/prevUrlName}}
+  {{#nextUrlName}}<a class="nextBtn button" href="/#!/event/{{nextUrlName}}">Next <i>&#187;</i></a>{{/nextUrlName}}
+</div>
+
+<div class="event clearfix">
+  <div class="details clearfix">
+    <h1 class="title">{{event.name}}</h1>
+    <h2 class="venue"><a href="/#!/venue/{{venue.urlName}}">{{venue.name}}</a></h2>
+    <div class="genres">{{event.genres}}</div>
+  </div>
+
+
+  <div class="btns clearfix">
+    {{^event.isFinished}}
+    <div class="button dateStart">Starts <time datetime="{{event.dateStart}}"></time></div>
+    {{/event.isFinished}}
+    <div class="button dateEnd">Ends <time datetime="{{event.dateEnd}}"></time></div>
+    <div class="button cost">{{{event.cost}}}</div>
+    <a   class="button mapBtn" href ="/#!/map/{{venue.id}}" ><i class="icon-map-marker"></i>View Map</a>
+    <!-- <div class="button shareBtn"><i class="icon-share"></i>Share</div> -->
+    <div class="button favBtn"><i class="icon-star"></i>Fav</div>
+    <div class="share like"></div>
+    <div class="share tweet"></div>
+  </div>
+
+</div>
+
+<div id="artistsContainer">
+  <div class="spinner"></div>
+</div>

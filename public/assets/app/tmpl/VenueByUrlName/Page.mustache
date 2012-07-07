@@ -1,0 +1,49 @@
+<div class="btnsContainer clearfix">
+  <a class="backBtn button" href="/#!/venues/">Back to Listing</a>
+  {{#prevUrlName}}<a class="prevBtn button" href="/#!/venue/{{prevUrlName}}"><i>&#171;</i> Prev</a>{{/prevUrlName}}
+  {{#nextUrlName}}<a class="nextBtn button" href="/#!/venue/{{nextUrlName}}">Next <i>&#187;</i></a>{{/nextUrlName}}
+</div>
+
+<div class="venue clearfix">
+  <div class="details clearfix">
+    <h1>{{venue.name}}</h1>
+    <h2>{{venue.district}}</h2>
+    <h5>{{venue.address}}</h5>
+  </div>
+
+  <div class="btns clearfix">
+      <div class="button eventsBtn"><i class="icon-th-list"></i>Events</div>
+      <div class="button picsBtn"><i class="icon-picture"></i>Pics</div>
+      <a   class="button mapBtn" href ="/#!/map/{{venue.id}}" ><i class="icon-map-marker"></i>View Map</a>
+      <!-- <div class="button shareBtn"><i class="icon-share"></i>Share</div> -->
+      <div class="button favBtn"><i class="icon-star"></i>Fav</div>
+      <div class="share like"></div>
+      <div class="share tweet"></div>
+  </div>
+</div>
+
+
+
+<div id="tabsContent" class="clearfix">
+
+  <div id="eventsContainer">
+    <div id="upcoming" class="clearfix">
+      <div class="header">Upcoming</div>
+      <div class="eventGroup"></div>
+    </div>
+    <div id="finished" class="clearfix">
+      <div class="header">Ended</div>
+      <div class="eventGroup"></div>
+    </div>
+  </div>
+
+  <div id="picsContainer" class="clearfix">
+    <div class="header">Instagram Pics <p class="fr">Simply tag <code>#Beatguide</code> to see your pics here.</p></div>
+    <div class="pics"></div>
+    <div class="empty">
+      <h4>Sorry there are no pictures yet for {{venue.name}}.</h4>
+    </div>
+  </div>
+
+</div>
+

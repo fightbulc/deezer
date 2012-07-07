@@ -1,0 +1,12 @@
+.DS_Store
+.git*
+.idea
+deploy.sh
+deploy-exclude.txt
+Guardfile
+Gemfile*
+common.config.php
+app/coffee
+app/less
+logs
+README

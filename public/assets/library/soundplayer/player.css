@@ -1,0 +1,212 @@
+#soundcloudPlayer {
+    z-index: 1000;
+    position: fixed;
+    bottom: -105px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: #212121;
+    border-top: 3px solid #444;
+    box-shadow: 0 0 2px #000;
+}
+
+#soundcloudPlayer .player .controls {
+    z-index: 200;
+    position: absolute;
+    width: 110px;
+    top: 25px;
+    left: 10px;
+}
+
+#soundcloudPlayer .player .controls a {
+    display: block;
+    float: left;
+    background-repeat: no-repeat;
+    background-position: center 0;
+    width: 36px;
+    height: 46px;
+}
+
+#soundcloudPlayer .player .controls .prev {
+    background-image: url(/assets/library/soundcloud/player-prev.png);
+}
+
+#soundcloudPlayer .player .controls .prev:hover {
+    background-position: center -44px;
+}
+
+#soundcloudPlayer .player .controls .next {
+    background-image: url(/assets/library/soundcloud/icons/player-next.png);
+}
+
+#soundcloudPlayer .player .controls .next:hover {
+    background-position: center -44px;
+}
+
+#soundcloudPlayer .player .controls .play {
+    display: block;
+    background-image: url(/assets/library/soundcloud/icons/player-play.png);
+}
+
+#soundcloudPlayer .player .controls .play:hover {
+    display: block;
+    background-position: center -44px;
+}
+
+#soundcloudPlayer .player .controls .pause {
+    display: none;
+    background-image: url(/assets/library/soundcloud/icons/player-pause.png);
+}
+
+#soundcloudPlayer .player .controls .pause:hover {
+    background-position: center -44px;
+}
+
+#soundcloudPlayer .player .playlist {
+    display: none;
+    z-index: 1000;
+    position: absolute;
+    top: -100px;
+    left: 0;
+    right: 0;
+    height: 100px;
+    overflow: auto;
+}
+
+#soundcloudPlayer .player .playlist .tracks {
+    list-style-position: inside;
+    margin: 0;
+}
+
+#soundcloudPlayer .player .playlist .tracks li {
+    padding: 2px 10px;
+    margin: 0;
+    background: #000;
+    margin-bottom: 2px;
+}
+
+#soundcloudPlayer .player .title-bar {
+    z-index: 200;
+    position: absolute;
+    top: 38px;
+    left: 130px;
+    border-radius: 5px;
+    cursor: default;
+    font-size: 14px;
+    color: #555;
+}
+
+#soundcloudPlayer .player .title-bar .trackNumber {
+    float: left;
+    margin-right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2px 10px;
+}
+
+#soundcloudPlayer .player .title-bar .title {
+    float: left;
+    margin-right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2px 10px;
+}
+
+#soundcloudPlayer .player .title-bar .title .artistName {
+    float: left;
+    color: #fff;
+    margin-right: 10px;
+}
+
+#soundcloudPlayer .player .title-bar .title .trackName {
+    float: left;
+    color: #468186;
+}
+
+#soundcloudPlayer .player .title-bar .time {
+    float: right;
+    margin-right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 2px 10px;
+}
+
+#soundcloudPlayer .player .title-bar .closePlayer {
+    float: right;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1px 7px;
+}
+
+#soundcloudPlayer .player .title-bar .closePlayer a {
+    color: #468186;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+}
+
+#soundcloudPlayer .player .title-bar .closePlayer a:hover {
+    color: #c00;
+    text-decoration: none;
+}
+
+#soundcloudPlayer .player .waveform {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+#soundcloudPlayer .player .waveform .complete {
+    position: absolute;
+    top: 0;
+    background: #444;
+    width: 100%;
+    height: 100px;
+}
+
+#soundcloudPlayer .player .waveform .loading {
+    width: 100%;
+    height: 100px;
+    background: #ccc;
+    background-image: url(/assets/library/soundcloud/stripes-loader.gif);
+    background-repeat: repeat-x;
+    background-position: center center;
+    background-size: auto 100px;
+}
+
+#soundcloudPlayer .player .waveform .ran {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    background: #111;
+    background: #468186;
+}
+
+#soundcloudPlayer .player .waveform .wave {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100px;
+}
+
+#soundcloudPlayer .player .waveform .wave img {
+    width: 100%;
+    height: 100px;
+}
+
+#soundcloudPlayer .playing .controls .play {
+    display: none;
+}
+
+#soundcloudPlayer .playing .controls .play:hover {
+    display: none;
+}
+
+#soundcloudPlayer .playing .controls .pause {
+    display: block;
+    background-image: url(/assets/library/soundcloud/icons/player-pause.png);
+}
+
+#soundcloudPlayer .playing .controls .pause:hover {
+    display: block;
+}

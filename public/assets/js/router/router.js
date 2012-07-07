@@ -26,6 +26,7 @@ define(function(require){
     track: function(id){
       if(!base.has('trackPageView')){ base.set('trackPageView', new trackPageView); }
       base.get('trackPageView').render(id);
+      base.get('trackPageView').playTrack(id);
       this.switchPage('trackPageView');
     },
 

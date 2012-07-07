@@ -3,7 +3,6 @@
   position: relative;
 }
 
-
 .bubbles .bubble {
   color: #fff;
   padding: 20px;
@@ -18,3 +17,7 @@
 .bubble.bbl3 { background: #33a; }
 .bubble.bbl4 { background: #777; }
 .bubble.bbl5 { background: #0aa; }
+
+#pages .page {
+  display: none;
+}

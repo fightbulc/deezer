@@ -2,14 +2,12 @@ define(function(require){
 
   var $ = require('jquery');
   var base = require('base');
-  var homePageView = require('js/view/homePageView');
+  var router = require('js/router/router')
 
   return function(){
 
-    base.set('homePageView', new homePageView);
-    base.get('homePageView').render();
+    base.set('router', new router);
 
-    console.log('woooo!');
   };
 
 });

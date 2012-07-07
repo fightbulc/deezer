@@ -3,7 +3,7 @@ define(function(require){
   var hogan = require('hogan');
   var abstractView = require('abstractView');
 
-  var template = hogan.compile(require('text!templates/homePage.mustache'));
+  var template = hogan.compile(require('text!templates/testPage.mustache'));
   // ##########################################
 
   var testPageView = abstractView.extend({

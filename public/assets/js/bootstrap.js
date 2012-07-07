@@ -6,6 +6,7 @@ require.config({
     text: 'vendor/requirejs/text',
     underscore: 'vendor/backbone/underscore-1.3.3',
     backbone: 'vendor/backbone/backbone-0.9.2',
+    base: 'js/base',
 
     abstractModel: 'js/abstract/abstractModel',
     abstractCollection: 'js/abstract/abstractCollection',

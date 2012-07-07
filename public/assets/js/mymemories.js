@@ -1,8 +1,11 @@
 define(function(require){
 
-  $ = require('jquery');
+  var $ = require('jquery');
+  var homePageView = require('homePageView');
 
   return function(){
+
+
     console.log('woooo!');
   };
 

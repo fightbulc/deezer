@@ -4,6 +4,23 @@
 
   class MemoriesManager extends \Simplon\Abstracts\AbstractCacheQueryManager
   {
+    private $_userManager;
+
+    /**
+     * @return \App\Manager\DeezerUsers\UserManager
+     */
+    protected function _getUserManager()
+    {
+      if (!$this->_userManager)
+      {
+        $this->_userManager = new \App\Manager\DeezerUsers\UserManager();
+      }
+
+      return $this->_userManager;
+    }
+
+    // ##########################################
+
     /**
      * @return string
      */
@@ -55,9 +72,13 @@
      */
     public function createMemory(\App\Request\Memories\rInterface\iCreateMemory $requestVo)
     {
+      $userVo = $this
+        ->_getUserManager()
+        ->getUserVo($requestVo->getDeezerAccessToken());
+
       $data = array(
         'id'        => NULL,
-        'user_id'   => $requestVo->getUserId(),
+        'user_id'   => $userVo->getId(),
         'track_id'  => $requestVo->getTrackId(),
         'mood_tag'  => $requestVo->getMoodTag(),
         'memory'    => $requestVo->getMemory(),
@@ -162,9 +183,13 @@
      */
     public function setUpVote(\App\Request\Memories\rInterface\iSetUpVote $requestVo)
     {
+      $userVo = $this
+        ->_getUserManager()
+        ->getUserVo($requestVo->getDeezerAccessToken());
+
       $data = array(
         'memory_id' => $requestVo->getId(),
-        'user_id'   => $requestVo->getUserId(),
+        'user_id'   => $userVo->getId(),
         'vote'      => 1
       );
 
@@ -179,13 +204,17 @@
      */
     public function setDownVote(\App\Request\Memories\rInterface\iSetDownVote $requestVo)
     {
+      $userVo = $this
+        ->_getUserManager()
+        ->getUserVo($requestVo->getDeezerAccessToken());
+
       $data = array(
         'memory_id' => $requestVo->getId(),
-        'user_id'   => $requestVo->getUserId(),
+        'user_id'   => $userVo->getId(),
         'vote'      => -1
       );
 
-      return $this->_InsertUpdateMemoryUserVote($requestVo->getId(), $requestVo->getUserId(), $data);
+      return $this->_InsertUpdateMemoryUserVote($requestVo->getId(), $userVo->getId(), $data);
     }
 
     // ##########################################
@@ -196,11 +225,15 @@
      */
     public function removeVote(\App\Request\Memories\rRemoveVote $requestVo)
     {
+      $userVo = $this
+        ->_getUserManager()
+        ->getUserVo($requestVo->getDeezerAccessToken());
+
       $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
 
       $sqlConditions = array(
         'memory_id' => $requestVo->getId(),
-        'user_id' => $requestVo->getUserId(),
+        'user_id'   => $userVo->getId(),
       );
 
       $dbCacheQuery

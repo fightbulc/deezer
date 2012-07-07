@@ -5,4 +5,5 @@
   interface iAbstractRequest
   {
     public function getCurrentUsersFacebookId();
+    public function getDeezerAccessToken();
   }

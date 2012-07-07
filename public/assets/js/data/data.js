@@ -4,7 +4,7 @@ define(function(require){
   var _ = require('underscore');
   var $ = require('jquery');
 
-  _module.deezer = function(parts, data){
+  var deezer = function(parts, data){
     if(_.isUndefined(data)){
       data = {};
     }
@@ -16,8 +16,9 @@ define(function(require){
       data:_.extend({}, data, {output:'jsonp'})
     });
   };
+  _module.deezer = deezer;
 
-  _module.api = function(method, parameters){
+  var api = function(method, parameters){
     return $.ajax({
       url:'/api/v1/web/',
       type:'POST',
@@ -29,6 +30,13 @@ define(function(require){
         "params":parameters
       })
     });
+  };
+  _module.api = api;
+
+  // --
+
+  _module.deezerSearchTracks = function(query){
+    return deezer(['2.0', 'search'], {'q':query});
   };
 
   return _module;

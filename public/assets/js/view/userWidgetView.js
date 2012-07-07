@@ -13,8 +13,13 @@ define(function(require){
 
     // ----------------------------
 
+    accessToken: null,
+
+    // ----------------------------
+
     events: {
-      'click button': 'login'
+      'click button.login': 'login',
+      'click button.logout': 'logout'
     },
 
     // ----------------------------
@@ -22,10 +27,16 @@ define(function(require){
     render: function(){
 
       var templateVars = {};
+      var that = this;
 
-      this.$el.html(template.render());
-
-      //this.renderBubbles();
+      DZ.getLoginStatus(function(response){
+        if(response.authResponse){
+          that.accessToken = response.authResponse.accessToken;
+          //console.log(response);
+          templateVars.logged = true;
+        }
+        that.$el.html(template.render(templateVars));
+      });
 
       return this;
     },
@@ -33,16 +44,24 @@ define(function(require){
     // ----------------------------
 
     login: function(){
+      var that = this;
       DZ.login(function(response) {
         if (response.authResponse) {
-          console.log('Welcome!  Fetching your information.... ');
-          DZ.api('/user/me', function(response) {
-            console.log('Good to see you, ' + response.name + '.');
-          });
-        } else {
-          console.log('User cancelled login or did not fully authorize.');
+          that.accessToken = response.authResponse.accessToken;
+          that.$el.html(template.render({logged: true}));
+          //console.log('Welcome!  Fetching your information.... ');
+          //DZ.api('/user/me', function(response) {
+          //  console.log('Good to see you, ' + response.name + '.');
+          //});
         }
       });
+    },
+
+    // ----------------------------
+
+    logout: function(){
+      DZ.logout();
+      this.$el.html(template.render());
     }
   });
 

@@ -1,0 +1,28 @@
+html, body {
+  padding: 0;
+  font-family: Helvetica, Arial, Sans-Serif;
+  font-size: 13px;
+}
+
+.bubbles {
+  position: relative;
+}
+
+.bubbles .bubble {
+  color: #fff;
+  padding: 20px;
+  position: absolute;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
+}
+
+.bubble.bbl1 { background: #a33; }
+.bubble.bbl2 { background: #3a3; }
+.bubble.bbl3 { background: #33a; }
+.bubble.bbl4 { background: #777; }
+.bubble.bbl5 { background: #0aa; }
+
+#pages .page {
+  display: none;
+}

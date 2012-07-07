@@ -1,9 +1,16 @@
 define(function(require){
 
-  $ = require('jquery');
+  var $ = require('jquery');
+  var base = require('base');
+  var router = require('js/router/router')
+  var DZ = require('js/deezer');
 
   return function(){
-    console.log('woooo!');
+
+    base.set('router', new router);
+
+
+
   };
 
 });

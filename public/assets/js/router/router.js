@@ -26,8 +26,8 @@ define(function(require){
     track: function(id){
       if(!base.has('trackPageView')){ base.set('trackPageView', new trackPageView); }
       base.get('trackPageView').render(id);
-      base.get('trackPageView').playTrack(id);
       this.switchPage('trackPageView');
+      base.get('trackPageView').playTrack(id);
     },
 
     test: function(){
@@ -38,6 +38,14 @@ define(function(require){
 
     default: function(){
       this.redirect('home');
+    },
+
+    switchPage: function(id){
+      this.$pages.hide();
+      if(base.has('trackPageView')){
+        base.get('trackPageView').stop();
+      }
+      $('#'+id).show();
     }
   });
 

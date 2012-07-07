@@ -10,11 +10,6 @@ define(function(require){
       backbone.history.start();
     },
 
-    switchPage: function(id){
-      this.$pages.hide();
-      $('#'+id).show();
-    },
-
     redirect: function(route){
       this.navigate('!/'+route, {trigger: true});
     }

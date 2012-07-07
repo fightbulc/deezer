@@ -22,9 +22,10 @@ define(function(require){
     // ----------------------------
 
     render: function(){
+      console.log('test');
       this.$el.html(template.render());
 
-      this.renderBubbles();
+      //this.renderBubbles();
 
       return this;
     },

@@ -1,0 +1,41 @@
+<?php
+
+  require_once __DIR__ . '/common.config.php';
+
+  // ##########################################
+
+  // limit to environment
+  $env = $app['environment'];
+  $app = $app[$env];
+
+  // ##########################################
+
+  $app = array(
+
+    'logging' => true,
+
+    'environment' => $env,
+
+    'url' => $app['url'],
+
+    'facebook' => array(
+      'appId' => $app['thirdParty']['facebook']['appId'],
+      'permissions' => $app['thirdParty']['facebook']['permissions'],
+    ),
+
+    'twitter' => $app['thirdParty']['twitter'],
+
+    'ga' => $app['thirdParty']['ga'],
+
+    /**
+     * determine which from the above keys
+     * should be accessible for javascript
+     */
+
+    'public' => array(
+      'logging',
+      'url',
+      'facebook'
+    ),
+
+  );

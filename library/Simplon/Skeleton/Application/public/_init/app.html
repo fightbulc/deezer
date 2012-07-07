@@ -1,0 +1,82 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width">
+
+  {{CRAWLER:METAS}}
+
+  <link rel="stylesheet" href="/assets/vendor/h5bp/h5bp-reset.css">
+  <link rel="stylesheet" href="/assets/app/css/bootstrap.css">
+  <script src="/assets/vendor/modernizr/modernizr-2.5.2.min.js"></script>
+</head>
+<body>
+  <!--[if lt IE 7]>
+  <p class=chromeframe>
+    Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or
+    <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.
+  </p>
+  <![endif]-->
+
+  <header>
+  </header>
+
+  <!-- ###################################### -->
+
+  <div id="matrix" role="main">
+
+    <div id="page-browser-happy">
+      <div class="header">
+        <h1>Your browser is outdated</h1>
+      </div>
+
+      <div class="body">
+        <p>Using an outdated browser makes your computer unsafe! Therefore, we suggest you one of the following FREE browsers:</p>
+
+        <p class="browser clearfix">
+          <a href="http://google.com/chrome"><img src="/assets/app/img/icons/browser/chrome.png">Chrome</a>
+          <a href="http://www.mozilla.com/firefox"><img src="/assets/app/img/icons/browser/firefox.png">Firefox</a>
+          <a href="http://www.apple.com/safari/download"><img src="/assets/app/img/icons/browser/safari.png">Safari</a>
+        </p>
+
+        <h3>Browse happy!</h3>
+
+        <p>Much love!</p>
+      </div>
+    </div>
+
+    <!-- ////////////////////////// -->
+
+    <div id="page-loading">
+      <h1>Loading...</h1>
+    </div>
+
+    <!-- ////////////////////////// -->
+
+    <div id="page-loaded">
+
+      <h3 class="facebookState">State: <span></span></h3>
+      <a href="#" id="facebookLogin">Facebook login</a>
+      <a href="#" id="facebookLogout">Facebook logout</a>
+
+    </div>
+
+  </div>
+
+  <!-- ###################################### -->
+
+  <footer>
+  </footer>
+
+  <!-- ###################################### -->
+
+  {{CONFIG:PUBLIC}}
+
+  <script data-main="/assets/app/js/bootstrap" src="/assets/vendor/requirejs/require.js"></script>
+
+</body>
+</html>

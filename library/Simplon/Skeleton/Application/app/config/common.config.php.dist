@@ -1,0 +1,113 @@
+<?php
+
+  $app = array();
+
+  // ##########################################
+  // active environment: set via public/index.php
+
+  $app['environment'] = 'development';
+
+  // ##########################################
+  // environment: development
+
+  $app['development'] = array(
+
+    'appName' => 'simplon',
+
+    // ----------------------------------------
+
+    'url' => array(
+      'domain' => 'http://local.simplon.it',
+      'api' => '/api/v1',
+      'cdn' => NULL,
+    ),
+
+    // ----------------------------------------
+
+    'path' => array(
+      'root' => '/Users/fightbulc/www/opensource/simplon.it',
+      'public' => '/public',
+    ),
+
+    // ----------------------------------------
+
+    'sql' => array(
+
+      'master' => array(
+        'server' => 'localhost',
+        'database' => 'Simplon',
+        'username' => 'root',
+        'password' => 'root'
+      ),
+
+      'slave-1' => array(
+        'server' => NULL,
+        'database' => NULL,
+        'username' => NULL,
+        'password' => NULL
+      ),
+
+    ),
+
+    // ----------------------------------------
+
+    'nosql' => array(
+
+      'couchdb' => array(),
+
+    ),
+
+    // ----------------------------------------
+
+    'cache' => array(
+
+      'couchbase' => array(
+
+        array(
+          'server' => '127.0.0.1',
+          'port' => '8091',
+          'username' => 'rootuser',
+          'password' => 'rootuser',
+          'bucket' => 'default',
+        )
+
+      ),
+
+      'redis' => array(),
+
+    ),
+
+    // ----------------------------------------
+
+    'thirdParty' => array(
+
+      'ga' => array(
+        'enabled' => FALSE,
+        'account' => 'UA-28559422-XX',
+        'domain' => 'simplon.it',
+      ),
+
+      'facebook' => array(
+        'appId' => '',
+        'secret' => '',
+        'permissions' => array(
+          'email',
+          'publish_stream'
+        )
+      ),
+
+      'twitter' => array(),
+
+    ),
+
+  );
+
+  // ##########################################
+  // environment: mirror
+
+  $app['mirror'] = array();
+
+  // ##########################################
+  // environment: live
+
+  $app['live'] = array();

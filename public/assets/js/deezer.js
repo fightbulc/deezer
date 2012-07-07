@@ -1,5 +1,9 @@
 define(function(require){
 
+	var $ = require('jquery');
+
+	var deferred = $.Deferred();
+	DZ.promisePlayerOnLoad = deferred.promise();
 	DZ.init({
 		appId  : '103961',
 	    channelUrl : 'http://'+window.location.host+'/deezerChannel.php',
@@ -11,7 +15,7 @@ define(function(require){
 			height : 100,
 			format : 'vertical',
 			onload : function(){
-				console.log('loaded');
+				deferred.resolve();
 			}
 		}
 	});

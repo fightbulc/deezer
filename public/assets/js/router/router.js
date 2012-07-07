@@ -6,6 +6,7 @@ define(function(require){
   var homePageView = require('js/view/homePageView');
   var trackPageView = require('js/view/trackPageView');
   var testPageView = require('js/view/testPageView');
+  var trackPageView = require('js/view/trackPageView');
 
   var router = abstractRouter.extend({
 
@@ -23,8 +24,9 @@ define(function(require){
     },
 
     track: function(id){
-      if(!base.has('trackPageView')){ base.set('trackPageView', new testPageView); }
+      if(!base.has('trackPageView')){ base.set('trackPageView', new trackPageView); }
       base.get('trackPageView').render(id);
+      base.get('trackPageView').playTrack(id);
       this.switchPage('trackPageView');
     },
 

@@ -26,6 +26,10 @@
     'deezer' => array(
     ),
 
+    'soundcloud' => array(
+      'clientId' => '',
+    ),
+
     'facebook'   => array(
       'appId'       => '',
       'secret'      => '',

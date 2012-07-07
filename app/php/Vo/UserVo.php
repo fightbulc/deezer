@@ -2,7 +2,7 @@
 
   namespace App\Vo;
 
-  class MoodVo extends \Simplon\Abstracts\AbstractVo
+  class UserVo extends \Simplon\Abstracts\AbstractVo
   {
     public function getId()
     {

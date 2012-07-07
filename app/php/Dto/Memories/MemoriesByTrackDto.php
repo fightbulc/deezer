@@ -1,8 +1,8 @@
 <?php
 
-  namespace App\Dto\Moods;
+  namespace App\Dto\Memories;
 
-  class MoodsByTrackDto extends \Simplon\Abstracts\AbstractDto
+  class MemoriesByTrackDto extends \Simplon\Abstracts\AbstractDto
   {
     protected function getObjects()
     {
@@ -12,12 +12,33 @@
           'vo' => 'getId',
         ),
 
-        'amount' => array(
-          'vo' => 'getAmount',
+        'userId' => array(
+          'vo' => 'getUserId',
         ),
 
-        'name' => array(
-          'vo' => 'getName',
+        'trackId' => array(
+          'vo' => 'getTrackId',
+        ),
+
+        'moodTag' => array(
+          'vo' => 'getMoodTag',
+        ),
+
+        'memory' => array(
+          'vo' => 'getMemory',
+        ),
+
+        'votes' => array(
+          'vo' => 'getVotes',
+          'default' => 0,
+        ),
+
+        'created' => array(
+          'vo' => 'getCreated',
+          'format' => function($date)
+          {
+            return \Simplon\Lib\Helper\FormatHelper::convertUnixTimeToIso($date);
+          }
         ),
 
       );

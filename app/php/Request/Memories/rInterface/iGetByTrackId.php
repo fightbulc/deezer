@@ -1,6 +1,6 @@
 <?php
 
-  namespace App\Request\Moods\rInterface;
+  namespace App\Request\Memories\rInterface;
 
   interface iGetByTrackId extends \Simplon\Abstracts\iAbstractRequest
   {

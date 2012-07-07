@@ -2,7 +2,7 @@
 
   namespace App\JsonRpc\V1\Web\Service;
 
-  class Moods extends \Simplon\Abstracts\AbstractService
+  class Users extends \Simplon\Abstracts\AbstractService
   {
     /**
      * @param $request
@@ -24,4 +24,21 @@
 
     // ##########################################
 
+    /**
+     * @param $request
+     * @return array
+     */
+    public function getByMoodName($request)
+    {
+    }
+
+    // ##########################################
+
+    /**
+     * @param $request
+     * @return array
+     */
+    public function getByMoodId($request)
+    {
+    }
   }

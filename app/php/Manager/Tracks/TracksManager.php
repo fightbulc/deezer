@@ -1,8 +1,8 @@
 <?php
 
-  namespace App\Manager\Moods;
+  namespace App\Manager\Tracks;
 
-  class MoodsManager extends \Simplon\Abstracts\AbstractCacheQueryManager
+  class TracksManager extends \Simplon\Abstracts\AbstractCacheQueryManager
   {
     /**
      * @return string

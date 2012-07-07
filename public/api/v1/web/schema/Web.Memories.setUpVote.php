@@ -3,7 +3,8 @@
   return array(
     'params' => array(
 
-      'trackId' => 'integer',
+      'memoryId' => 'integer',
+      'userId' => 'integer',
 
     ),
 
@@ -11,10 +12,7 @@
 
     'response' => array(
 
-        array(
-            'amount',
-            'tag',
-        ),
+      'created' => TRUE
 
     ),
 

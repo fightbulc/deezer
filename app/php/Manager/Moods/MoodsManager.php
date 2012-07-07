@@ -11,16 +11,13 @@
     {
       return "
       SELECT
-        count(mood.id) AS amount,
-        mood.id,
-        mood.name
+        count(mem.id) AS amount,
+        mem.mood_tag AS tag
       FROM
         memories AS mem
-        INNER JOIN moods AS mood ON mem.mood_id = mood.id
       WHERE
-        track_id = :trackId
-      GROUP BY mood.name
-      ORDER BY amount DESC, mood.name ASC
+        mem.track_id = :trackId
+      GROUP BY mem.mood_tag
       ";
     }
 

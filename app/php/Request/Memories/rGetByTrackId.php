@@ -1,8 +1,8 @@
 <?php
 
-  namespace App\Request\Moods;
+  namespace App\Request\Memories;
 
-  class rGetByTrackId extends \Simplon\Abstracts\AbstractVo implements \App\Request\Moods\rInterface\iGetByTrackId
+  class rGetByTrackId extends \Simplon\Abstracts\AbstractVo implements \App\Request\Memories\rInterface\iGetByTrackId
   {
     /**
      * @return string

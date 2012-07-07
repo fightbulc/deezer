@@ -1,8 +1,8 @@
 <?php
 
-  namespace App\Manager\Moods;
+  namespace App\Manager\AppUsers;
 
-  class MoodsManager extends \Simplon\Abstracts\AbstractCacheQueryManager
+  class AppUsersManager extends \Simplon\Abstracts\AbstractCacheQueryManager
   {
     /**
      * @return string

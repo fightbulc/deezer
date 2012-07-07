@@ -12,4 +12,6 @@ define(function(require){
     }
   });
 
+  return homePageView;
+
 });

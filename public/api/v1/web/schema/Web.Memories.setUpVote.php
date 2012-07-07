@@ -3,8 +3,8 @@
   return array(
     'params' => array(
 
+      'accessToken' => 'string',
       'memoryId' => 'integer',
-      'userId' => 'integer',
 
     ),
 

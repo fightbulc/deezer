@@ -3,8 +3,8 @@
   return array(
     'params' => array(
 
+      'accessToken' => 'string',
       'trackId' => 'integer',
-      'userId' => 'integer',
       'moodTag' => 'string',
       'memory' => 'string',
 

@@ -116,4 +116,14 @@
       return \Simplon\Lib\Facebook\FacebookLib::getInstance()
         ->getUserId();
     }
+
+    // ##########################################
+
+    /**
+     * @return string
+     */
+    public function getDeezerAccessToken()
+    {
+      return $this->getByKey('accessToken');
+    }
   }

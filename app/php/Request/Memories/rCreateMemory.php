@@ -15,14 +15,6 @@
     /**
      * @return string
      */
-    public function getUserId()
-    {
-      return $this->getByKey('userId');
-    }
-
-    /**
-     * @return string
-     */
     public function getMoodTag()
     {
       return $this->getByKey('moodTag');

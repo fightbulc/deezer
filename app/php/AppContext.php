@@ -38,15 +38,15 @@
     // ########################################
 
     /**
-     * @return Vo\Config\SoundcloudConfigVo
+     * @return Vo\Config\DeezerConfigVo
      */
-    public function getSoundcloudConfig()
+    public function getDeezerConfig()
     {
       /** @var $thirdPartyConfigVo \App\Vo\Config\ThirdPartyConfigVo */
       $thirdPartyConfigVo = $this->getThirdPartyConfig();
 
-      $configVo = new \App\Vo\Config\SoundcloudConfigVo();
-      $configVo->setData($thirdPartyConfigVo->getSoundcloudConfig());
+      $configVo = new \App\Vo\Config\DeezerConfigVo();
+      $configVo->setData($thirdPartyConfigVo->getDeezerConfig());
 
       return $configVo;
     }

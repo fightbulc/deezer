@@ -1,8 +1,8 @@
 <?php
 
-  namespace App\Manager\Moods;
+  namespace App\Manager\Memories;
 
-  class MoodsManager extends \Simplon\Abstracts\AbstractCacheQueryManager
+  class MemoriesManager extends \Simplon\Abstracts\AbstractCacheQueryManager
   {
     /**
      * @return string
@@ -11,26 +11,24 @@
     {
       return "
       SELECT
-        count(mood.id) AS amount,
-        mood.id,
-        mood.name
+        mem.*,
+        SUM(mv.vote) AS votes
       FROM
         memories AS mem
-        INNER JOIN moods AS mood ON mem.mood_id = mood.id
+        LEFT JOIN memory_votes AS mv ON mv.memory_id = mem.id
       WHERE
-        track_id = :trackId
-      GROUP BY mood.name
-      ORDER BY amount DESC, mood.name ASC
+        mem.track_id = :trackId
+      GROUP BY mem.id
       ";
     }
 
     // ##########################################
 
     /**
-     * @param \App\Request\Moods\rInterface\iGetByTrackId $requestVo
+     * @param \App\Request\Memories\rInterface\iGetByTrackId $requestVo
      * @return array
      */
-    public function getByTrackId(\App\Request\Moods\rInterface\iGetByTrackId $requestVo)
+    public function getByTrackId(\App\Request\Memories\rInterface\iGetByTrackId $requestVo)
     {
       $sqlQuery = $this->_getByTrackIdQuery();
 
@@ -44,8 +42,171 @@
         ->setSqlQuery($sqlQuery)
         ->setSqlConditions($conditions);
 
-      $moods = $this->fetchAll($dbCacheQuery);
+      $memories = $this->fetchAll($dbCacheQuery);
 
-      return \App\Factory\VoFactory::factory($moods, new \App\Vo\MoodVo());
+      return \App\Factory\VoFactory::factory($memories, new \App\Vo\MemoryVo());
+    }
+
+    // ##########################################
+
+    /**
+     * @param \App\Request\Memories\rInterface\iCreateMemory $requestVo
+     * @return bool
+     */
+    public function createMemory(\App\Request\Memories\rInterface\iCreateMemory $requestVo)
+    {
+      $data = array(
+        'id'        => NULL,
+        'user_id'   => $requestVo->getUserId(),
+        'track_id'  => $requestVo->getTrackId(),
+        'mood_tag'  => $requestVo->getMoodTag(),
+        'memory'    => $requestVo->getMemory(),
+        'created'   => time(),
+      );
+
+      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+
+      $dbCacheQuery
+        ->setSqlTable('memories')
+        ->setData($data);
+
+      return $this->insert($dbCacheQuery);
+    }
+
+    // ##########################################
+
+    /**
+     * @param $memoryId
+     * @param $userId
+     * @param $data
+     * @return bool
+     */
+    protected function _InsertUpdateMemoryUserVote($memoryId, $userId, $data)
+    {
+      $sqlQuery = 'SELECT memory_id FROM memory_votes WHERE memory_id = :memoryId AND user_id = :userId';
+
+      $sqlConditions = array(
+        'memoryId' => $memoryId,
+        'userId'   => $userId,
+      );
+
+      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+
+      $dbCacheQuery
+        ->setSqlQuery($sqlQuery)
+        ->setSqlConditions($sqlConditions);
+
+      $isInDb = NULL;
+      $isInDb = $this->fetchColumn($dbCacheQuery);
+
+      if ($isInDb)
+      {
+        $result = $this->_updateMemoryUserVote($data);
+      }
+      else
+      {
+        $result = $this->_insertMemoryUserVote($data);
+      }
+
+      return $result;
+    }
+
+    // ##########################################
+
+    /**
+     * @param $data
+     * @return bool
+     */
+    protected function _insertMemoryUserVote($data)
+    {
+      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+
+      $dbCacheQuery
+        ->setSqlTable('memory_votes')
+        ->setData($data);
+
+      return $this->insert($dbCacheQuery);
+    }
+
+    // ##########################################
+
+    /**
+     * @param $data
+     * @return bool
+     */
+    protected function _updateMemoryUserVote($data)
+    {
+      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+
+      $sqlConditions = array(
+        'memory_id' => $data['memory_id'],
+        'user_id'   => $data['user_id'],
+      );
+
+      unset($data['memory_id']);
+      unset($data['user_id']);
+
+      $dbCacheQuery
+        ->setSqlTable('memory_votes')
+        ->setSqlConditions($sqlConditions)
+        ->setData($data);
+
+      return $this->update($dbCacheQuery);
+    }
+
+    // ##########################################
+
+    /**
+     * @param \App\Request\Memories\rInterface\iSetUpVote $requestVo
+     * @return bool
+     */
+    public function setUpVote(\App\Request\Memories\rInterface\iSetUpVote $requestVo)
+    {
+      $data = array(
+        'memory_id' => $requestVo->getId(),
+        'user_id'   => $requestVo->getUserId(),
+        'vote'      => 1
+      );
+
+      return $this->_InsertUpdateMemoryUserVote($requestVo->getId(), $requestVo->getUserId(), $data);
+    }
+
+    // ##########################################
+
+    /**
+     * @param \App\Request\Memories\rInterface\iSetDownVote $requestVo
+     * @return bool
+     */
+    public function setDownVote(\App\Request\Memories\rInterface\iSetDownVote $requestVo)
+    {
+      $data = array(
+        'memory_id' => $requestVo->getId(),
+        'user_id'   => $requestVo->getUserId(),
+        'vote'      => -1
+      );
+
+      return $this->_InsertUpdateMemoryUserVote($requestVo->getId(), $requestVo->getUserId(), $data);
+    }
+
+    // ##########################################
+
+    /**
+     * @param \App\Request\Memories\rRemoveVote $requestVo
+     * @return bool
+     */
+    public function removeVote(\App\Request\Memories\rRemoveVote $requestVo)
+    {
+      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+
+      $sqlConditions = array(
+        'memory_id' => $requestVo->getId(),
+        'user_id' => $requestVo->getUserId(),
+      );
+
+      $dbCacheQuery
+        ->setSqlTable('memory_votes')
+        ->setSqlConditions($sqlConditions);
+
+      return $this->remove($dbCacheQuery);
     }
   }

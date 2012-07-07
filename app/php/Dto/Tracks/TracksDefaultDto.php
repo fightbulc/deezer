@@ -1,8 +1,8 @@
 <?php
 
-  namespace App\Dto\Moods;
+  namespace App\Dto\Tracks;
 
-  class MoodsDefaultDto extends \Simplon\Abstracts\AbstractDto
+  class TracksDefaultDto extends \Simplon\Abstracts\AbstractDto
   {
     protected function getObjects()
     {

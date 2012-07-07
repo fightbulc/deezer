@@ -4,6 +4,9 @@
     'params' => array(
 
       'trackId' => 'integer',
+      'userId' => 'integer',
+      'moodTag' => 'string',
+      'memory' => 'string',
 
     ),
 
@@ -11,10 +14,7 @@
 
     'response' => array(
 
-        array(
-            'amount',
-            'tag',
-        ),
+      'created' => TRUE
 
     ),
 

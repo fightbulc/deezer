@@ -2,7 +2,7 @@
 
   namespace App\Vo;
 
-  class MoodVo extends \Simplon\Abstracts\AbstractVo
+  class MemoryVo extends \Simplon\Abstracts\AbstractVo
   {
     public function getId()
     {
@@ -11,15 +11,43 @@
 
     // ##########################################
 
-    public function getAmount()
+    public function getUserId()
     {
-      return $this->getByKey('amount');
+      return $this->getByKey('user_id');
     }
 
     // ##########################################
 
-    public function getName()
+    public function getTrackId()
     {
-      return $this->getByKey('name');
+      return $this->getByKey('track_id');
+    }
+
+    // ##########################################
+
+    public function getMoodTag()
+    {
+      return $this->getByKey('mood_tag');
+    }
+
+    // ##########################################
+
+    public function getMemory()
+    {
+      return $this->getByKey('memory');
+    }
+
+    // ##########################################
+
+    public function getVotes()
+    {
+      return $this->getByKey('votes');
+    }
+
+    // ##########################################
+
+    public function getCreated()
+    {
+      return $this->getByKey('created');
     }
   }

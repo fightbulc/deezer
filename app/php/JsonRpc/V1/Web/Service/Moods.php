@@ -14,7 +14,7 @@
       $requestVo = new \App\Request\Moods\rGetByTrackId();
       $requestVo->setData($request);
 
-      // get artists
+      // get moods
       $moodsManager = new \App\Manager\Moods\MoodsManager();
       $moodsVo = $moodsManager->getByTrackId($requestVo);
       $moodsDto = \App\Factory\DtoFactory::factory($moodsVo, new \App\Dto\Moods\MoodsByTrackDto());
@@ -24,4 +24,11 @@
 
     // ##########################################
 
+    /**
+     * @param $request
+     * @return array
+     */
+    public function getByUserId($request)
+    {
+    }
   }

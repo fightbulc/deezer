@@ -11,10 +11,15 @@
 
     'response' => array(
 
-        array(
-            'amount',
-            'tag',
-        ),
+      array(
+        'id',
+        'userId',
+        'trackId',
+        'moodTag',
+        'memory',
+        'votes',
+        'created',
+      )
 
     ),
 

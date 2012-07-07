@@ -1,14 +1,14 @@
 <?php
 
-  namespace App\Request\Moods;
+  namespace App\Request\Tracks;
 
-  class rGetByTrackId extends \Simplon\Abstracts\AbstractVo implements \App\Request\Moods\rInterface\iGetByTrackId
+  class rGetByMoodName extends \Simplon\Abstracts\AbstractVo implements \App\Request\Tracks\rInterface\iGetByMoodName
   {
     /**
      * @return string
      */
-    public function getTrackId()
+    public function getMoodName()
     {
-      return $this->getByKey('trackId');
+      return $this->getByKey('moodName');
     }
   }

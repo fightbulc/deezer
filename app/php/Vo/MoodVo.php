@@ -4,13 +4,6 @@
 
   class MoodVo extends \Simplon\Abstracts\AbstractVo
   {
-    public function getId()
-    {
-      return $this->getByKey('id');
-    }
-
-    // ##########################################
-
     public function getAmount()
     {
       return $this->getByKey('amount');
@@ -18,8 +11,8 @@
 
     // ##########################################
 
-    public function getName()
+    public function getTag()
     {
-      return $this->getByKey('name');
+      return $this->getByKey('tag');
     }
   }

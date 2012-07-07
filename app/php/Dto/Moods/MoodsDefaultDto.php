@@ -12,8 +12,8 @@
           'vo' => 'getId',
         ),
 
-        'name' => array(
-          'vo' => 'getName',
+        'tag' => array(
+          'vo' => 'getTag',
         ),
 
       );

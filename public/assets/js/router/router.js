@@ -21,7 +21,7 @@ define(function(require){
     },
 
     test: function(){
-      if(!base.has('testPageView')){ base.set('testPageView', new homePageView); }
+      if(!base.has('testPageView')){ base.set('testPageView', new testPageView); }
       base.get('testPageView').render();
       this.switchPage('testPage');
     },

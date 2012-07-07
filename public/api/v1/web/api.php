@@ -11,19 +11,16 @@
     // allowed services
     'validServices' => array(
 
-      'Web.Base.getInitialData',
+      // moods
+      'Web.Moods.getByTrackId',
 
-      'Web.Events.getByTime',
-      'Web.Events.getByUrlName',
-      'Web.Events.getByVenueUrlName',
-      'Web.Events.setUserRelation',
-      'Web.Events.removeUserRelation',
+      // tracks
+      'Web.Tracks.getByMoodName',
+      'Web.Tracks.getByMoodId',
 
-      'Web.Artists.getByUrlName',
-      'Web.Artists.getByEventUrlName',
-      'Web.Artists.getTracksDataByUrlName',
-
-      'Web.Venues.getByUrlName',
+      // users
+      'Web.Users.getByMoodName',
+      'Web.Users.getByTrackId',
 
     )
 

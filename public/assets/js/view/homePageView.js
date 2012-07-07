@@ -1,6 +1,9 @@
 define(function(require){
 
+  var hogan = require('hogan');
   var abstractView = require('abstractView');
+
+  var template = hogan.compile(require('text!templates/homePage.mustache'));
 
   var homePageView = abstractView.extend({
     el: '#homePage',
@@ -8,7 +11,9 @@ define(function(require){
     // ----------------------------
 
     render: function(){
-      this.$el.html('test');
+      this.$el.html(template.render());
+
+      return this;
     }
   });
 

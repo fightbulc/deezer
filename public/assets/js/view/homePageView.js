@@ -17,7 +17,7 @@ define(function(require){
 
     render: function(){
       this.$el.html(template.render());
-
+      this.$el.show();
       //this.renderBubbles();
 
       return this;

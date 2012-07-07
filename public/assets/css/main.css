@@ -31,6 +31,16 @@ h1 {
 .bubble.bbl4 { background: #777; }
 .bubble.bbl5 { background: #0aa; }
 
+#pages {
+  position: relative;
+}
+
+#userWidget {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+
 #pages .page {
   display: none;
 }

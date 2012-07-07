@@ -12,7 +12,7 @@ define(function(require){
     routes: {
       "!/home": "home",
       "!/test": "test",
-      "!/track/:id":
+      "!/track/:id": "track",
       "*default": "default"
     },
 

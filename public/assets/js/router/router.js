@@ -14,38 +14,37 @@ define(function(require){
       "!/home": "home",
       "!/test": "test",
       "!/track/:id": "track",
+      "!/track/:id/:tag": "track",
       "*default": "default"
     },
 
     home: function(){
       if(!base.has('homePageView')){ base.set('homePageView', new homePageView); }
+      this.switchPage();
       base.get('homePageView').render();
-      this.switchPage('homePage');
     },
 
-    track: function(id){
+    track: function(id, tag){
       if(!base.has('trackPageView')){ base.set('trackPageView', new trackPageView); }
-      base.get('trackPageView').render(id);
-      this.switchPage('trackPageView');
-      base.get('trackPageView').playTrack(id);
+      this.switchPage();
+      base.get('trackPageView').render(id, tag);
     },
 
     test: function(){
       if(!base.has('testPageView')){ base.set('testPageView', new testPageView); }
+      this.switchPage();
       base.get('testPageView').render();
-      this.switchPage('testPage');
     },
 
     default: function(){
       this.redirect('home');
     },
 
-    switchPage: function(id){
+    switchPage: function(){
       this.$pages.hide();
       if(base.has('trackPageView')){
         base.get('trackPageView').stop();
       }
-      $('#'+id).show();
     }
   });
 

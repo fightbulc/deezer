@@ -1,4 +1,12 @@
 
+#deezerPlayer {
+  position: absolute;
+  top: -300px;
+}
+
+#deezerPlayer.active {
+  top: auto;
+}
 
 .bubbles {
   position: relative;

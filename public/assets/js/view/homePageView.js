@@ -5,6 +5,10 @@ define(function(require){
 
   var template = hogan.compile(require('text!templates/homePage.mustache'));
 
+  var bubbleView = require('js/view/bubbleView');
+
+  // ##########################################
+
   var homePageView = abstractView.extend({
     el: '#homePage',
 
@@ -13,7 +17,18 @@ define(function(require){
     render: function(){
       this.$el.html(template.render());
 
+      this.renderBubbles();
+
       return this;
+    },
+
+    renderBubbles: function(){
+      var i, view;
+      for(i=0; i<100; i+=1){
+        view = new bubbleView;
+
+        this.$('.bubbles').append(view.render().el);
+      }
     }
   });
 

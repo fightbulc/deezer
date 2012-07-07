@@ -39,14 +39,16 @@
      */
     public function getByKey($key)
     {
-      $value = NULL;
-
       if (array_key_exists($key, $this->_data))
       {
-        $value = $this->_data[$key];
+        return $this->_data[$key];
+      }
+      else
+      {
+        $this->throwException('VO fail: "' . $key . '" is missing.');
       }
 
-      return $value;
+      return FALSE;
     }
 
     // ##########################################

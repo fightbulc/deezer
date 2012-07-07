@@ -5,7 +5,7 @@
   // ##########################################
   // app name
 
-  $app['appName'] = 'beatguide';
+  $app['appName'] = 'deezer';
 
   // ##########################################
   // active environment
@@ -20,17 +20,15 @@
     'ga'         => array(
       'enabled' => FALSE,
       'account' => 'UA-26262067-2',
-      'domain'  => 'beatguide.me',
+      'domain'  => 'deezer.efides.com',
     ),
 
-    'soundcloud' => array(
-      'clientId'     => '3d5d9f33c9df990d4c2637494c6b2c7e',
-      'clientSecret' => 'd0e7672760807fd50fdbb4f9e60a44f5',
+    'deezer' => array(
     ),
 
     'facebook'   => array(
-      'appId'       => '214748345258289',
-      'secret'      => 'd65b884a39f4d5f574a54f8676c2184d',
+      'appId'       => '',
+      'secret'      => '',
       'permissions' => array(
         'email',
         'publish_stream'
@@ -47,7 +45,7 @@
   $app['local'] = array(
 
     'url'        => array(
-      'domain' => 'http://local.beatguide.me',
+      'domain' => 'http://local.deezer.efides.com',
       'public' => '',
       'api'    => '/api/v1',
       'cdn'    => NULL,
@@ -56,7 +54,7 @@
     // ----------------------------------------
 
     'path'       => array(
-      'root'   => '/Users/fightbulc/www/apps/beatguide.me',
+      'root'   => '/Users/fightbulc/www/apps/deezer',
       'public' => '/public',
     ),
 
@@ -68,7 +66,7 @@
 
         array(
           'server'   => 'localhost',
-          'database' => 'beatguide',
+          'database' => 'deezer',
           'username' => 'root',
           'password' => 'root'
         )
@@ -106,7 +104,7 @@
   $app['production'] = array(
 
     'url'        => array(
-      'domain' => 'http://next.beatguide.me',
+      'domain' => 'http://deezer.efides.com',
       'public' => '',
       'api'    => '/api/v1',
       'cdn'    => NULL,
@@ -127,7 +125,7 @@
 
         array(
           'server'   => 'localhost',
-          'database' => 'beatguide',
+          'database' => 'deezer',
           'username' => 'root',
           'password' => '$%beatguide2012'
         )

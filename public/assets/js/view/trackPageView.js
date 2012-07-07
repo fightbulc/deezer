@@ -19,22 +19,22 @@ define(function(require){
 
     // ----------------------------
 
-    render: function(){
-      console.log('routed to track page');
+    render: function(trackId){
 
-      this.$el.html(template.render());
-
-      return this;
-    },
-
-    // ----------------------------
-
-    playTrack: function(trackId){
-      this.$player.addClass('active');
+      var that = this;
 
     	DZ.promisePlayerOnLoad.done(function(){
   			DZ.player.playTracks([trackId], 0, function(response){
-  				console.log("track list", response.tracks);
+          var track = response.tracks[0].title;
+          var artist = response.tracks[0].artist.name;
+
+          that.$el.html(template.render({
+            track: track,
+            artist: artist
+          }));
+
+          that.$el.show();
+          that.$player.addClass('active');
   			});
     	});
     },

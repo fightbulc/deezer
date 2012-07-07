@@ -11,7 +11,7 @@ define(function(require){
     routes: {
       "!/home": "home",
       "!/test": "test",
-      ":default": "default"
+      "*default": "default"
     },
 
     home: function(){

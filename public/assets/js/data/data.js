@@ -39,5 +39,17 @@ define(function(require){
     return deezer(['2.0', 'search'], {'q':query});
   };
 
+  _module.getMoodsByTrackId = function(trackId){
+    return api('Web.Moods.getByTrackId', [{trackId:trackId}]);
+  };
+
+  _module.getTracksByMoodName = function(moodName){
+    return api('Web.Tracks.getByMoodName', [{moodName:moodName}]);
+  };
+
+  _module.getMemories = function(trackId, mood){
+    
+  };
+
   return _module;
 });

@@ -11,7 +11,8 @@ require.config({
 
     abstractModel: 'js/abstract/abstractModel',
     abstractCollection: 'js/abstract/abstractCollection',
-    abstractView: 'js/abstract/abstractView'
+    abstractView: 'js/abstract/abstractView',
+    abstractRouter: 'js/abstract/abstractRouter'
   },
   shim: {
     backbone: {

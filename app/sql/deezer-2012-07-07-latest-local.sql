@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.25-log)
 # Database: deezer
-# Generation Time: 2012-07-07 16:11:03 +0000
+# Generation Time: 2012-07-07 17:03:38 +0000
 # ************************************************************
 
 
@@ -70,12 +70,24 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `memory_votes`;
 
 CREATE TABLE `memory_votes` (
-  `memory_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `memory_id` bigint(20) unsigned NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `vote` tinyint(1) NOT NULL,
-  PRIMARY KEY (`memory_id`)
+  KEY `byMemoryId` (`memory_id`,`user_id`,`vote`),
+  KEY `byUserId` (`user_id`,`memory_id`,`vote`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `memory_votes` WRITE;
+/*!40000 ALTER TABLE `memory_votes` DISABLE KEYS */;
+
+INSERT INTO `memory_votes` (`memory_id`, `user_id`, `vote`)
+VALUES
+	(14,1,-1),
+	(14,2,1),
+	(14,3,-1);
+
+/*!40000 ALTER TABLE `memory_votes` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table users

@@ -30,6 +30,8 @@ define(function(require){
     initialize: function(){
       this.$player = $('#deezerPlayer');
 
+      this._trackId = null;
+
       storyCollection.on('add', this.renderStories, this);
       storyCollection.on('remove', this.renderStories, this);
       storyCollection.on('reset', this.renderStories, this);
@@ -39,6 +41,7 @@ define(function(require){
     // ----------------------------
 
     render: function(trackId){
+      this._trackId = trackId;
 
       var that = this;
 
@@ -94,14 +97,16 @@ define(function(require){
     // ----------------------------
 
     eventClickAddStoryButton: function(){
+      var accessToken
+      var trackId = this._trackId;
       var story = this.$('textarea#TrackStory').val();
 
-      Data.createStory({
+      if(trackId !== null){
+        Data.createStory(accessToken, trackId, story).done(function(){
 
-      }).done(function(){
+        });
+      }
 
-      });
-      
       console.log(['eventClickAddStoryButton', story]);
     },
 

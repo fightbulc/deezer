@@ -2,7 +2,7 @@
 
   namespace App\Dto\Tracks;
 
-  class TracksByMoodNameDto extends \Simplon\Abstracts\AbstractDto
+  class TracksByMoodTagDto extends \Simplon\Abstracts\AbstractDto
   {
     protected function getObjects()
     {
@@ -16,8 +16,8 @@
           'vo' => 'getAmount',
         ),
 
-        'name' => array(
-          'vo' => 'getName',
+        'moodTag' => array(
+          'vo' => 'getMoodTag',
         ),
 
       );

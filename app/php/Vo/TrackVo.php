@@ -18,8 +18,8 @@
 
     // ##########################################
 
-    public function getName()
+    public function getMoodTag()
     {
-      return $this->getByKey('name');
+      return $this->getByKey('mood_tag');
     }
   }

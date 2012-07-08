@@ -33,6 +33,6 @@
      */
     public function getMoodTag()
     {
-      return $this->getByKey('moodTag');
+      return \Simplon\Lib\Helper\FormatHelper::stringUrlable($this->getByKey('moodTag'), '-');
     }
   }

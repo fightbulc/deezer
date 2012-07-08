@@ -97,6 +97,8 @@ define(function(require){
       });
     },
 
+    // ----------------------------
+
     // refactor to trackPage
     renderStoriesAdd: function(model){
       var rendered = templateStory.render(model.toJSON());
@@ -104,11 +106,13 @@ define(function(require){
       this.$('#TrackStories ul').prepend(rendered);
     },
 
+    // ----------------------------
+
     // refactor to trackPage
     renderStoriesReset: function(){
       var view = this;
 
-      view.$('#TrackStories ul').html(null);
+      view.$('#TrackStories ul').empty();
 
       storyCollection.each(function(storyModel){
         var rendered = templateStory.render(storyModel.toJSON());

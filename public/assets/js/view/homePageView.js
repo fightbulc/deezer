@@ -4,12 +4,14 @@ define(function(require){
   var abstractView = require('abstractView');
   var DZ = require('js/deezer');
   var Data = require('js/data/data');
+  var base = require('base')
 
   var TrackSearchCollection = require('js/collection/trackSearchCollection');
 
   var template = hogan.compile(require('text!templates/homePage.mustache'));
 
   var templateSearchResults = hogan.compile(require('text!templates/trackSearchResults.mustache'));
+  var templateMoodResults = hogan.compile(require('text!templates/moodSearchResults.mustache'));
 
   var bubbleView = require('js/view/bubbleView');
 
@@ -29,21 +31,23 @@ define(function(require){
 
       'click #QueryTrackResults li': 'selectTrack',
 
-      'keyup #QueryFeeling': 'eventFeelingInputChange',
-      'change #QueryFeeling': 'eventFeelingInputChange'
+      'focus #QueryFeeling': 'showMoods',
+      'blur #QueryFeeling': 'hideMoods',
+
+      'click #QueryFeelingResults li': 'selectMood',
+
+      'click .btn-go': 'saveMood'
     },
 
     // ----------------------------
 
     initialize: function(){
-      this.selectedTrack = 0;
-
       trackSearchCollection.on('add', this.renderSearchResults, this);
       trackSearchCollection.on('remove', this.renderSearchResults, this);
       trackSearchCollection.on('reset', this.renderSearchResults, this);
 
       this.eventTrackInputChange = _.debounce(this.eventTrackInputChange, 500);
-      this.eventFeelingInputChange = _.debounce(this.eventFeelingInputChange, 500);
+      //this.eventFeelingInputChange = _.debounce(this.eventFeelingInputChange, 500);
     },
 
     // ----------------------------
@@ -87,6 +91,9 @@ define(function(require){
       this.$el.html(template.render());
       this.$el.show();
 
+      this.selectedTrack = 0;
+      this.renderedMoods = false;
+
       return this;
     },
 
@@ -114,6 +121,31 @@ define(function(require){
       var $item = $(e.currentTarget);
       this.selectedTrack = Number($item.data('track-id'));
       this.$('#QueryTrack').val($item.data('track-metas'));
+      this.getMoods(this.selectedTrack);
+    },
+
+    // ----------------------------
+
+    getMoods: function(trackId){
+
+      var that = this;
+
+      Data.getMoodsByTrackId(trackId).done(function(response){
+        if(response.result.length){
+          that.renderedMoods = true;
+          that.$('#QueryFeeling').focus();
+          that.$('#QueryFeelingResults').html(templateMoodResults.render(response)).css(that.getFieldPosition('QueryFeeling')).fadeIn().show();
+        }else{
+          that.renderedMoods = false;
+        }
+      });
+    },
+
+    // ----------------------------
+
+    selectMood: function(e){
+      var $item = $(e.currentTarget);
+      this.$('#QueryFeeling').val($item.data('mood'));
     },
 
     // ----------------------------
@@ -138,6 +170,33 @@ define(function(require){
         this.$('.bubbles').append(view.render().el);
       }
     },
+
+    // ----------------------------
+
+    showMoods: function(){
+      if(this.renderedMoods){
+        this.$('#QueryFeelingResults').stop().fadeIn().show();
+      }
+    },
+
+    // ----------------------------
+
+    hideMoods: function(){
+      var that = this;
+
+      setTimeout(function(){
+        that.$('#QueryFeelingResults').hide();
+      }, 300);
+    },
+
+    // ----------------------------
+
+    saveMood: function(){
+      var userWidgetView = base.get('userWidgetView');
+      if(userWidgetView.accessToken === null){
+        userWidgetView.login();
+      }
+    }
   });
 
   return homePageView;

@@ -58,6 +58,9 @@ define(function(require){
       if(base.has('trackPageView')){
         base.get('trackPageView').stop();
       }
+      if(base.has('tagPageView')){
+        base.get('tagPageView').stop();
+      }
     }
   });
 

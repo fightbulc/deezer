@@ -4,8 +4,12 @@ define(function(require){
   var hogan = require('hogan');
   var abstractView = require('abstractView');
   var DZ = require('js/deezer');
+  var Data = require('js/data/data');
 
   var template = hogan.compile(require('text!templates/trackPage.mustache'));
+  var templateTrackPageHeader = hogan.compile(require('text!templates/trackPageHeader.mustache'));
+  var templateRelatedTracks = hogan.compile(require('text!templates/tracksRelatedToMood.mustache'));
+  var templateRelatedMoods = hogan.compile(require('text!templates/moodsRelatedToTrack.mustache'));
   // ##########################################
 
   var trackPageView = abstractView.extend({
@@ -23,12 +27,14 @@ define(function(require){
 
       var that = this;
 
+      that.$el.html(template.render({}));
+
     	DZ.promisePlayerOnLoad.done(function(){
   			DZ.player.playTracks([trackId], 0, function(response){
           var track = response.tracks[0].title;
           var artist = response.tracks[0].artist.name;
 
-          that.$el.html(template.render({
+          $('#memoriesHeader', that.$el).html(templateTrackPageHeader.render({
             track: track,
             artist: artist
           }));
@@ -37,6 +43,32 @@ define(function(require){
           that.$player.addClass('active');
   			});
     	});
+
+      Data.getMoodsByTrackId('234234').done(function(response){
+        console.log(['getMoodsByTrackId', response]);
+
+        var renderedRelatedMoods = templateRelatedMoods.render({
+          'moods':[
+          {name:'asldkfj'},
+          {name:'asd'}
+          ]
+        });
+
+        $('#RelatedMoods').html(renderedRelatedMoods);
+      });
+
+      Data.getTracksByMoodName('happy').done(function(response){
+        console.log(['getTracksByMoodName', response]);
+
+        var renderedRelatedTracks = templateRelatedTracks.render({
+          'tracks':[
+          {title:'asldkfj', id:3422},
+          {title:'asd', id:23444}
+          ]
+        });
+
+        $('#RelatedTracks').html(renderedRelatedTracks);
+      });
     },
 
     // ----------------------------

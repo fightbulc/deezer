@@ -5,7 +5,7 @@
 
       'accessToken' => 'string',
       'trackId' => 'integer',
-      'moodTag' => 'string',
+      'story' => 'string',
 
     ),
 

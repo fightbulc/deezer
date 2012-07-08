@@ -81,7 +81,6 @@
         'user_id'   => $userVo->getId(),
         'track_id'  => $requestVo->getTrackId(),
         'mood_tag'  => $requestVo->getMoodTag(),
-        'memory'    => $requestVo->getMemory(),
         'created'   => time(),
       );
 

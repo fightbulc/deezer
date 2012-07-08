@@ -6,5 +6,4 @@
   {
     public function getTrackId();
     public function getMoodTag();
-    public function getMemory();
   }

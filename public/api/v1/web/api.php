@@ -30,6 +30,11 @@
       'Web.Memories.setDownVote',
       'Web.Memories.removeVote',
 
+      // story
+      'Web.Stories.createStory',
+      'Web.Stories.getByTrackId',
+      'Web.Stories.getByUserId',
+
       // users
       'Web.Users.getByMoodName',
       'Web.Users.getByMoodId',

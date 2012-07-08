@@ -19,12 +19,4 @@
     {
       return $this->getByKey('moodTag');
     }
-
-    /**
-     * @return string
-     */
-    public function getMemory()
-    {
-      return $this->getByKey('memory');
-    }
   }

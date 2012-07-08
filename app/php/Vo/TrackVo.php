@@ -11,6 +11,20 @@
 
     // ##########################################
 
+    public function getArtistName()
+    {
+      return $this->getByKey('artist_name');
+    }
+
+    // ##########################################
+
+    public function getTrackTitle()
+    {
+      return $this->getByKey('track_title');
+    }
+
+    // ##########################################
+
     public function getAmount()
     {
       return $this->getByKey('amount');

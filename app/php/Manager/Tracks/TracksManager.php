@@ -57,10 +57,13 @@
       return "
       SELECT
         count(mem.id) AS amount,
+      	mem.mood_tag,
         mem.track_id AS id,
-      	mem.mood_tag
+        track.artist AS artist_name,
+        track.title AS track_title
       FROM
         memories AS mem
+        LEFT JOIN tracks AS track ON track.id = mem.track_id
       WHERE
         MATCH(mem.mood_tag) AGAINST(:moodTag IN BOOLEAN MODE)
       GROUP BY mem.track_id

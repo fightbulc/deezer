@@ -76,6 +76,8 @@
         ->_getUserManager()
         ->getUserVo($requestVo->getDeezerAccessToken());
 
+      // save memory
+
       $data = array(
         'id'        => NULL,
         'user_id'   => $userVo->getId(),
@@ -89,6 +91,35 @@
       $dbCacheQuery
         ->setSqlTable('memories')
         ->setData($data);
+
+      $this->insert($dbCacheQuery);
+
+      // save track
+      $this->createTrack($requestVo);
+
+      return TRUE;
+    }
+
+    // ##########################################
+
+    /**
+     * @param \App\Request\Memories\rInterface\iCreateMemory $requestVo
+     * @return bool
+     */
+    public function createTrack(\App\Request\Memories\rInterface\iCreateMemory $requestVo)
+    {
+      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+
+      $data = array(
+        'id'            => $requestVo->getTrackId(),
+        'artist'        => $requestVo->getArtistName(),
+        'title'         => $requestVo->getTrackTitle(),
+      );
+
+      $dbCacheQuery
+        ->setSqlTable('tracks')
+        ->setData($data)
+        ->setSqlInsertIgnore(TRUE);
 
       return $this->insert($dbCacheQuery);
     }

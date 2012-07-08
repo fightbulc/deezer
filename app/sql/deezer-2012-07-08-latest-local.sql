@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.25-log)
 # Database: deezer
-# Generation Time: 2012-07-08 10:40:51 +0000
+# Generation Time: 2012-07-08 10:59:49 +0000
 # ************************************************************
 
 
@@ -59,7 +59,9 @@ VALUES
 	(19,1,6026499,'exhausted',1341675170),
 	(20,1,6026499,'exhausted',1341675195),
 	(21,45403071,6026499,'exhausted',1341696769),
-	(22,45403071,6026499,'sunny',1341739052);
+	(22,45403071,6026499,'sunny',1341739052),
+	(23,45403071,6026499,'sunny',1341744892),
+	(24,45403071,6026499,'sunny',1341744902);
 
 /*!40000 ALTER TABLE `memories` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -116,6 +118,20 @@ VALUES
 
 /*!40000 ALTER TABLE `stories` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+# Dump of table tracks
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tracks`;
+
+CREATE TABLE `tracks` (
+  `id` bigint(20) unsigned NOT NULL,
+  `artist` varchar(100) NOT NULL DEFAULT '',
+  `title` varchar(100) NOT NULL DEFAULT '',
+  UNIQUE KEY `byId` (`id`,`artist`,`title`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 
 # Dump of table users

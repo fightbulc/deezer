@@ -15,6 +15,22 @@
     /**
      * @return string
      */
+    public function getArtistName()
+    {
+      return $this->getByKey('artistName');
+    }
+
+    /**
+     * @return string
+     */
+    public function getTrackTitle()
+    {
+      return $this->getByKey('trackTitle');
+    }
+
+    /**
+     * @return string
+     */
     public function getMoodTag()
     {
       return $this->getByKey('moodTag');

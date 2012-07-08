@@ -15,20 +15,10 @@
       $requestVo->setData($request);
 
       // get moods
-      $manager = new \App\Manager\Collections\CollectionsManager();
-      $collectionsVo = $manager->getByTrackId($requestVo);
-      $collectionsDto = \App\Factory\DtoFactory::factory($collectionsVo, new \App\Dto\Moods\MoodsByTrackDto());
+      $moodRequestVo = new \App\Request\Moods\rGetByTrackId();
+      $moodRequestVo->setData($request);
 
-      return $collectionsDto;
-    }
-
-    // ##########################################
-
-    /**
-     * @param $request
-     * @return array
-     */
-    public function getByUserId($request)
-    {
+      $moodsManager = new \App\Manager\Moods\MoodsManager();
+      $moodsVo = $moodsManager->getByTrackId($moodRequestVo);
     }
   }

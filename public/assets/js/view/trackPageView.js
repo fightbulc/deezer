@@ -43,6 +43,7 @@ define(function(require){
       var that = this;
 
       that.$el.html(template.render({}));
+      this.$el.show();
 
     	DZ.promisePlayerOnLoad.done(function(){
   			DZ.player.playTracks([trackId], 0, function(response){
@@ -101,7 +102,7 @@ define(function(require){
       }).done(function(){
 
       });
-      
+
       console.log(['eventClickAddStoryButton', story]);
     },
 

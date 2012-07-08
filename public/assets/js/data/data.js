@@ -43,8 +43,8 @@ define(function(require){
     return api('Web.Moods.getByTrackId', [{trackId:trackId}]);
   };
 
-  _module.getTracksByMoodName = function(moodName){
-    return api('Web.Tracks.getByMoodName', [{moodName:moodName}]);
+  _module.getTracksByMoodName = function(moodTag){
+    return api('Web.Tracks.getByMoodTag', [{moodTag:moodTag}]);
   };
 
   _module.getMemories = function(trackId, mood){

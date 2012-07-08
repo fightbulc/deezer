@@ -24,4 +24,21 @@
 
     // ##########################################
 
+    /**
+     * @param $request
+     * @return array
+     */
+    public function getByMoodTag($request)
+    {
+      // create requestVo
+      $requestVo = new \App\Request\Tracks\rGetByMoodTag();
+      $requestVo->setData($request);
+
+      // get artists
+      $manager = new \App\Manager\Tracks\TracksManager();
+      $tracksVo = $manager->getByMoodTag($requestVo);
+      $tracksDto = \App\Factory\DtoFactory::factory($tracksVo, new \App\Dto\Tracks\TracksByMoodTagDto());
+
+      return $tracksDto;
+    }
   }

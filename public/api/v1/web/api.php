@@ -11,34 +11,35 @@
     // allowed services
     'validServices' => array(
 
+      // collections
+//      'Web.Collections.getByTrackId',
+//      'Web.Collections.getByMoodTag',
+
       // moods
       'Web.Moods.getByTrackId',
-      'Web.Moods.getByUserId',
+//      'Web.Moods.getByUserId',
 
       // tracks
-      'Web.Tracks.getByMoodName',
-      'Web.Tracks.getByMoodId',
-      'Web.Tracks.getByUserId',
+      'Web.Tracks.getByMoodTag',
+//      'Web.Tracks.getByUserId',
 
       // memories
       'Web.Memories.createMemory',
-      'Web.Memories.getByMoodName',
-      'Web.Memories.getByMoodId',
       'Web.Memories.getByTrackId',
-      'Web.Memories.getByUserId',
       'Web.Memories.setUpVote',
       'Web.Memories.setDownVote',
       'Web.Memories.removeVote',
+//      'Web.Memories.getByMoodName',
+//      'Web.Memories.getByUserId',
 
       // story
       'Web.Stories.createStory',
       'Web.Stories.getByTrackId',
-      'Web.Stories.getByUserId',
+//      'Web.Stories.getByUserId',
 
       // users
-      'Web.Users.getByMoodName',
-      'Web.Users.getByMoodId',
-      'Web.Users.getByTrackId',
+//      'Web.Users.getByMoodName',
+//      'Web.Users.getByTrackId',
 
     )
 

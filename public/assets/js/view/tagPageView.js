@@ -76,14 +76,11 @@ define(function(require){
 
           // tracks
 
-          console.log(['tracks from collection', response['result']['tracks']]);
-
           var renderedRelatedTracks = templateRelatedTracks.render({
             'tracks':response['result']['tracks']
           });
 
           that.$('#RelatedTracks').html(renderedRelatedTracks);
-
 
           // deezer player
 

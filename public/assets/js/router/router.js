@@ -14,6 +14,7 @@ define(function(require){
       "!/home": "home",
       "!/test": "test",
       "!/track/:id": "track",
+      "!/tag/:tag": "tag",
       "!/memory/:tag": "memory",
       "*default": "default"
     },
@@ -24,7 +25,13 @@ define(function(require){
       base.get('homePageView').render();
     },
 
-    track: function(id, tag){
+    track: function(id){
+      if(!base.has('trackPageView')){ base.set('trackPageView', new trackPageView); }
+      this.switchPage();
+      base.get('trackPageView').render(id);
+    },
+
+    tag: function(tag){
       if(!base.has('trackPageView')){ base.set('trackPageView', new trackPageView); }
       this.switchPage();
       base.get('trackPageView').render(id, tag);

@@ -126,3 +126,19 @@ label input {
   display: inline-block;
   cursor: pointer;
 }
+
+#RelatedMoods {
+  background:yellow;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#RelatedTracks {
+  background:green;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px;
+}

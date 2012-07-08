@@ -48,10 +48,7 @@ define(function(require){
         console.log(['getMoodsByTrackId', response]);
 
         var renderedRelatedMoods = templateRelatedMoods.render({
-          'moods':[
-          {name:'asldkfj'},
-          {name:'asd'}
-          ]
+          'moods':response['result']
         });
 
         $('#RelatedMoods').html(renderedRelatedMoods);
@@ -61,10 +58,7 @@ define(function(require){
         console.log(['getTracksByMoodName', response]);
 
         var renderedRelatedTracks = templateRelatedTracks.render({
-          'tracks':[
-          {title:'asldkfj', id:3422},
-          {title:'asd', id:23444}
-          ]
+          'tracks':response['result']
         });
 
         $('#RelatedTracks').html(renderedRelatedTracks);

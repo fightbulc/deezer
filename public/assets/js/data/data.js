@@ -3,6 +3,7 @@ define(function(require){
 
   var _ = require('underscore');
   var $ = require('jquery');
+  var base = require('base');
 
   var deezer = function(parts, data){
     if(_.isUndefined(data)){
@@ -58,6 +59,20 @@ define(function(require){
       'story': story
     }]);
   }
+
+  _module.getWebCollectionsGetByTrackId = function(trackId){
+    return api('Web.Collections.getByTrackId', [{
+      'trackId': trackId
+    }]);
+  };
+
+  _module.getWebCollectionsGetByMoodTag = function(moodTag){
+    return api('Web.Collections.getByMoodTag', [{
+      'moodTag': moodTag
+    }]);
+  };
+
+  GLOBAL_Data = _module;
 
   return _module;
 });

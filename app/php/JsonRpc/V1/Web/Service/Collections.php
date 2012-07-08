@@ -52,7 +52,15 @@
       $trackRequestVo->setData(array('moodTags' => $tagsOnly));
       $tracksManager = new \App\Manager\Tracks\TracksManager();
       $tracksVo = $tracksManager->getByMultipleMoodTags($trackRequestVo, $requestVo->getTrackId());
-      $response['tracks'] = \App\Factory\DtoFactory::factory($tracksVo, new \App\Dto\Tracks\TracksDefaultDto());
+
+      if($tracksVo)
+      {
+        $response['tracks'] = \App\Factory\DtoFactory::factory($tracksVo, new \App\Dto\Tracks\TracksDefaultDto());
+      }
+      else
+      {
+        $response['tracks'] = array();
+      }
 
       // get stories
       $response['stories'] = $this->_getStoriesByTrackId($request);

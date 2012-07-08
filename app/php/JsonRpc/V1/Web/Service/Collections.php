@@ -39,6 +39,13 @@
       $tracksVo = $tracksManager->getByMultipleMoodTags($trackRequestVo, $requestVo->getTrackId());
       $response['tracks'] = \App\Factory\DtoFactory::factory($tracksVo, new \App\Dto\Tracks\TracksDefaultDto());
 
+      // get stories
+      $storyRequestVo = new \App\Request\Stories\rGetByTrackId();
+      $storyRequestVo->setData($request);
+      $storiesManager = new \App\Manager\Stories\StoriesManager();
+      $storiesVo = $storiesManager->getByTrackId($storyRequestVo);
+      $response['stories'] = \App\Factory\DtoFactory::factory($storiesVo, new \App\Dto\Stories\StoriesByTrackDto());
+
       // return response
       return $response;
     }

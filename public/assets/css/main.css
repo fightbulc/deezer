@@ -105,6 +105,25 @@ h1 {
   font-weight: normal;
 }
 
+#RelatedMoods {
+  background:yellow;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#RelatedTracks {
+  background:green;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+#homePage .after-song {
+}
+
 label {
   font-size: 20px;
 }
@@ -125,20 +144,4 @@ label input {
   text-align: center;
   display: inline-block;
   cursor: pointer;
-}
-
-#RelatedMoods {
-  background:yellow;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  padding: 5px;
-}
-
-#RelatedTracks {
-  background:green;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  padding: 5px;
 }

@@ -7,6 +7,7 @@ define(function(require){
   var trackPageView = require('js/view/trackPageView');
   var testPageView = require('js/view/testPageView');
   var trackPageView = require('js/view/trackPageView');
+  var tagPageView = require('js/view/tagPageView');
 
   var router = abstractRouter.extend({
 
@@ -32,9 +33,10 @@ define(function(require){
     },
 
     tag: function(tag){
-      if(!base.has('trackPageView')){ base.set('trackPageView', new trackPageView); }
+      console.log('tag page');
+      if(!base.has('tagPageView')){ base.set('tagPageView', new tagPageView); }
       this.switchPage();
-      base.get('trackPageView').render(id, tag);
+      base.get('tagPageView').render(tag);
     },
 
     test: function(){

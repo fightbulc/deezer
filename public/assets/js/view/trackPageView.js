@@ -21,6 +21,10 @@ define(function(require){
   var trackPageView = abstractView.extend({
     el: '#trackPage',
 
+    events: {
+      'click #AddStoryButton': 'eventClickAddStoryButton'
+    },
+
     // ----------------------------
 
     initialize: function(){
@@ -45,7 +49,7 @@ define(function(require){
           var track = response.tracks[0].title;
           var artist = response.tracks[0].artist.name;
 
-          $('#memoriesHeader', that.$el).html(templateTrackPageHeader.render({
+          that.$('#memoriesHeader').html(templateTrackPageHeader.render({
             track: track,
             artist: artist
           }));
@@ -62,7 +66,7 @@ define(function(require){
           'moods':response['result']
         });
 
-        $('#RelatedMoods').html(renderedRelatedMoods);
+        that.$('#RelatedMoods').html(renderedRelatedMoods);
       });
 
       // Data.getTracksByMoodName('happy').done(function(response){
@@ -84,7 +88,21 @@ define(function(require){
           'stories':storyCollection.toJSON()
         });
 
-        $('#TrackStories').html(renderedStories);
+        this.$('#TrackStories').html(renderedStories);
+    },
+
+    // ----------------------------
+
+    eventClickAddStoryButton: function(){
+      var story = this.$('textarea#TrackStory').val();
+
+      Data.createStory({
+
+      }).done(function(){
+
+      });
+      
+      console.log(['eventClickAddStoryButton', story]);
     },
 
     // ----------------------------

@@ -51,5 +51,13 @@ define(function(require){
     return api('Web.Stories.getByTrackId', [{trackId:trackId}]);
   };
 
+  _module.createStory = function(accessToken, trackId, story){
+    return api('Web.Stories.createStory', [{
+      'accessToken': accessToken,
+      'trackId': trackId,
+      'story': story
+    }]);
+  }
+
   return _module;
 });

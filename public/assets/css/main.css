@@ -116,8 +116,23 @@ h1 a span {
   font-weight: normal;
 }
 
+#RelatedMoods h6, #RelatedTracks h6 {
+  color: #fff;
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0 10px 10px;
+}
+
+#RelatedMoods a, #RelatedTracks a {
+  display: block;
+  color: #fff;
+  font-weight: bold;
+  text-indent: 30px;
+  font-size: 15px;
+}
+
 #RelatedMoods {
-  background:yellow;
+  background: #908e41;
+  color: #fff;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -125,7 +140,7 @@ h1 a span {
 }
 
 #RelatedTracks {
-  background:green;
+  background: #4ca09d;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -162,3 +177,9 @@ textarea {
   width: 100%;
   height: 60px;
 }
+
+.btn-primary {
+  background: #008dc8;
+}
+
+

@@ -49,10 +49,6 @@ define(function(require){
         if (response.authResponse) {
           that.accessToken = response.authResponse.accessToken;
           that.$el.html(template.render({logged: true}));
-          //console.log('Welcome!  Fetching your information.... ');
-          //DZ.api('/user/me', function(response) {
-          //  console.log('Good to see you, ' + response.name + '.');
-          //});
         }
       });
     },
@@ -61,6 +57,7 @@ define(function(require){
 
     logout: function(){
       DZ.logout();
+      this.accessToken = null;
       this.$el.html(template.render());
     }
   });

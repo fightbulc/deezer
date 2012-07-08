@@ -117,25 +117,32 @@
      */
     public function createStory(\App\Request\Stories\rInterface\iCreateStory $requestVo)
     {
-      $userVo = $this
-        ->_getUserManager()
-        ->getUserVo($requestVo->getDeezerAccessToken());
+      $story = $requestVo->getStory();
 
-      $data = array(
-        'id'        => NULL,
-        'track_id'  => $requestVo->getTrackId(),
-        'user_id'   => $userVo->getId(),
-        'story'     => $requestVo->getStory(),
-        'created'   => time(),
-      );
+      if(!empty($story))
+      {
+        $userVo = $this
+          ->_getUserManager()
+          ->getUserVo($requestVo->getDeezerAccessToken());
 
-      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+        $data = array(
+          'id'        => NULL,
+          'track_id'  => $requestVo->getTrackId(),
+          'user_id'   => $userVo->getId(),
+          'story'     => $story,
+          'created'   => time(),
+        );
 
-      $dbCacheQuery
-        ->setSqlTable('stories')
-        ->setData($data);
+        $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
 
-      return $this->insert($dbCacheQuery);
+        $dbCacheQuery
+          ->setSqlTable('stories')
+          ->setData($data);
+
+        return $this->insert($dbCacheQuery);
+      }
+
+      return FALSE;
     }
 
     // ##########################################

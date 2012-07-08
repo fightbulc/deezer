@@ -1,5 +1,7 @@
 <?php
 
+  header("Access-Control-Allow-Origin: *");
+
   session_start();
 
   require(__DIR__ . '/../../../../library/Simplon/Bootstrap.php');

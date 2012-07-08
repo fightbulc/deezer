@@ -36,7 +36,7 @@
      */
     public static function convertUnixTimeToIso($unixtime)
     {
-      return date('Y-m-d\TH:i:s', $unixtime);
+      return date('d.m.Y, H:i', $unixtime);
     }
 
     // ##########################################

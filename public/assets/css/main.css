@@ -156,3 +156,32 @@ label input {
   display: inline-block;
   cursor: pointer;
 }
+
+#TrackStory
+{
+    width:570px;
+    height:100px;
+}
+
+#TrackStories ul
+{
+    margin: 0;
+    padding: 0;
+    list-style-type:none;
+}
+
+#TrackStories li
+{
+    margin-top:25px;
+    padding-top:25px;
+    border-top:1px solid #000;
+    font-size:14px;
+}
+
+#TrackStories li span
+{
+    display:block;
+    float:right;
+    color:#999;
+    font-size:11px;
+}

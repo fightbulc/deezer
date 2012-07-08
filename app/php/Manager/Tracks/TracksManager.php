@@ -49,6 +49,8 @@
       return \App\Factory\VoFactory::factory($moods, new \App\Vo\MoodVo());
     }
 
+    // ##########################################
+
     /**
      * @return string
      */
@@ -82,6 +84,57 @@
 
       $conditions = array(
         'moodTag' => $requestVo->getMoodTag() . '*',
+      );
+
+      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+
+      $dbCacheQuery
+        ->setSqlQuery($sqlQuery)
+        ->setSqlConditions($conditions);
+
+      $tracks = $this->fetchAll($dbCacheQuery);
+
+      return \App\Factory\VoFactory::factory($tracks, new \App\Vo\TrackVo());
+    }
+
+    // ##########################################
+
+    /**
+     * @param $moodTags
+     * @return string
+     */
+    protected function _getByMultipleMoodTagsQuery($moodTags)
+    {
+      return "
+      SELECT
+        count(mem.id) AS amount,
+        mem.mood_tag AS mood_name,
+        mem.track_id AS id,
+        track.artist AS artist_name,
+        track.title AS track_title
+      FROM
+        memories AS mem
+        LEFT JOIN tracks AS track ON track.id = mem.track_id
+      WHERE
+        mem.mood_tag IN(" . join(',', $moodTags) . ")
+        AND mem.track_id != :excludeTrackId
+      GROUP BY mem.track_id
+      ";
+    }
+
+    // ##########################################
+
+    /**
+     * @param \App\Request\Tracks\rInterface\iGetByMultipleMoodTags $requestVo
+     * @param $excludeTrackId
+     * @return array
+     */
+    public function getByMultipleMoodTags(\App\Request\Tracks\rInterface\iGetByMultipleMoodTags $requestVo, $excludeTrackId)
+    {
+      $sqlQuery = $this->_getByMultipleMoodTagsQuery($requestVo->getMoodTags());
+
+      $conditions = array(
+        'excludeTrackId' => $excludeTrackId,
       );
 
       $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();

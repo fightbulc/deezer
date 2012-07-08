@@ -10,7 +10,6 @@ define(function(require){
   var StoryCollection = require('js/collection/storyCollection');
 
   var storyCollection = new StoryCollection({});
-  GLOBAL_storyCollection = storyCollection;
 
   var template = hogan.compile(require('text!templates/trackPage.mustache'));
   var templateTrackPageHeader = hogan.compile(require('text!templates/trackPageHeader.mustache'));
@@ -49,6 +48,7 @@ define(function(require){
       that.$el.html(template.render({}));
       this.$el.show();
 
+
     	DZ.promisePlayerOnLoad.done(function(){
   			DZ.player.playTracks([trackId], 0, function(response){
           var track = response.tracks[0].title;
@@ -73,17 +73,7 @@ define(function(require){
 
         that.$('#RelatedMoods').html(renderedRelatedMoods);
       });
-
-      // Data.getTracksByMoodName('happy').done(function(response){
-      //   console.log(['getTracksByMoodName', response]);
-
-      //   var renderedRelatedTracks = templateRelatedTracks.render({
-      //     'tracks':response['result']
-      //   });
-
-      //   $('#RelatedTracks').html(renderedRelatedTracks);
-      // });
-
+      
       storyCollection.search(trackId);
 
     },

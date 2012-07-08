@@ -12,8 +12,12 @@
           'vo' => 'getId',
         ),
 
-        'name' => array(
-          'vo' => 'getName',
+        'artistName' => array(
+          'vo' => 'getArtistName',
+        ),
+
+        'trackTitle' => array(
+          'vo' => 'getTrackTitle',
         ),
 
       );

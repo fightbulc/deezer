@@ -33,8 +33,8 @@ define(function(require){
 
       this._trackId = null;
 
-      // storyCollection.on('add', this.renderStoriesAdd, this);
-      // storyCollection.on('reset', this.renderStoriesReset, this);
+      storyCollection.on('add', this.renderStoriesAdd, this);
+      storyCollection.on('reset', this.renderStoriesReset, this);
 
     },
 

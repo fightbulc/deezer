@@ -10,6 +10,7 @@ define(function(require){
   var StoryCollection = require('js/collection/storyCollection');
 
   var storyCollection = new StoryCollection({});
+  GLOBAL_storyCollection = storyCollection;
 
   var template = hogan.compile(require('text!templates/trackPage.mustache'));
   var templateTrackPageHeader = hogan.compile(require('text!templates/trackPageHeader.mustache'));
@@ -32,15 +33,16 @@ define(function(require){
 
       this._trackId = null;
 
-      storyCollection.on('add', this.renderStoriesAdd, this);
-      storyCollection.on('remove', this.renderStoriesReset, this);
-      storyCollection.on('reset', this.renderStoriesReset, this);
+      // storyCollection.on('add', this.renderStoriesAdd, this);
+      // storyCollection.on('reset', this.renderStoriesReset, this);
 
     },
 
     // ----------------------------
 
     render: function(trackId){
+      storyCollection.reset();
+      
       this._trackId = trackId;
 
       var that = this;
@@ -69,7 +71,10 @@ define(function(require){
 
           // stories
 
+          console.log(['calling storyCollection.add for '+trackId, response['result']['stories']]);
           storyCollection.add(response['result']['stories']);
+          that.renderStoriesReset();
+
 
           // moods
 
@@ -99,10 +104,12 @@ define(function(require){
 
         that.$('#RelatedMoods').html(renderedRelatedMoods);
       });
-      
+
     },
 
     renderStoriesAdd: function(model){
+      console.log(['trackPageView renderStoriesAdd', arguments]);
+      
       var rendered = templateStory.render(model.toJSON());
 
       this.$('#TrackStories ul').prepend(rendered);

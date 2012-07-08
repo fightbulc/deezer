@@ -10,6 +10,7 @@ define(function(require){
   var StoryCollection = require('js/collection/storyCollection');
 
   var storyCollection = new StoryCollection({});
+  GLOBAL_storyCollection = storyCollection;
 
   var template = hogan.compile(require('text!templates/tagPage.mustache'));
   var templateTagPageHeader = hogan.compile(require('text!templates/tagPageHeader.mustache'));
@@ -40,6 +41,8 @@ define(function(require){
     // ----------------------------
 
     render: function(tag){
+      storyCollection.reset();
+      
       this._tag = tag;
       this._trackId = null;
 
@@ -101,6 +104,8 @@ define(function(require){
 
     // refactor to trackPage
     renderStoriesAdd: function(model){
+      console.log(['tagPageView renderStoriesAdd', arguments]);
+
       var rendered = templateStory.render(model.toJSON());
 
       this.$('#TrackStories ul').prepend(rendered);

@@ -131,20 +131,27 @@
      */
     public function getByMultipleMoodTags(\App\Request\Tracks\rInterface\iGetByMultipleMoodTags $requestVo, $excludeTrackId)
     {
-      $sqlQuery = $this->_getByMultipleMoodTagsQuery($requestVo->getMoodTags());
+      $moodTags = $requestVo->getMoodTags();
 
-      $conditions = array(
-        'excludeTrackId' => $excludeTrackId,
-      );
+      if(count($moodTags))
+      {
+        $sqlQuery = $this->_getByMultipleMoodTagsQuery($moodTags);
 
-      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+        $conditions = array(
+          'excludeTrackId' => $excludeTrackId,
+        );
 
-      $dbCacheQuery
-        ->setSqlQuery($sqlQuery)
-        ->setSqlConditions($conditions);
+        $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
 
-      $tracks = $this->fetchAll($dbCacheQuery);
+        $dbCacheQuery
+          ->setSqlQuery($sqlQuery)
+          ->setSqlConditions($conditions);
 
-      return \App\Factory\VoFactory::factory($tracks, new \App\Vo\TrackVo());
+        $tracks = $this->fetchAll($dbCacheQuery);
+
+        return \App\Factory\VoFactory::factory($tracks, new \App\Vo\TrackVo());
+      }
+
+      return FALSE;
     }
   }

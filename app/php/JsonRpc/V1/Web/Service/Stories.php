@@ -30,15 +30,15 @@
     public function getByTrackId($request)
     {
       // create requestVo
-      $requestVo = new \App\Request\Memories\rGetByTrackId();
+      $requestVo = new \App\Request\Stories\rGetByTrackId();
       $requestVo->setData($request);
 
       // get memories
-      $manager = new \App\Manager\Memories\MemoriesManager();
-      $memoriesVo = $manager->getByTrackId($requestVo);
-      $memoriesDto = \App\Factory\DtoFactory::factory($memoriesVo, new \App\Dto\Memories\MemoriesByTrackDto());
+      $manager = new \App\Manager\Stories\StoriesManager();
+      $storiesVo = $manager->getByTrackId($requestVo);
+      $storiesDto = \App\Factory\DtoFactory::factory($storiesVo, new \App\Dto\Stories\StoriesByTrackDto());
 
-      return $memoriesDto;
+      return $storiesDto;
     }
 
     // ##########################################

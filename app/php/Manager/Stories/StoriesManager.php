@@ -39,10 +39,10 @@
     // ##########################################
 
     /**
-     * @param \App\Request\Memories\rInterface\iGetByTrackId $requestVo
+     * @param \App\Request\Stories\rInterface\iGetByTrackId $requestVo
      * @return array
      */
-    public function getByTrackId(\App\Request\Memories\rInterface\iGetByTrackId $requestVo)
+    public function getByTrackId(\App\Request\Stories\rInterface\iGetByTrackId $requestVo)
     {
       $sqlQuery = $this->_getByTrackIdQuery();
 

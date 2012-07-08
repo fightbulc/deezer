@@ -1,8 +1,8 @@
 <?php
 
-  namespace App\Request\Memories\rInterface;
+  namespace App\Request\Stories\rInterface;
 
   interface iSetDownVote extends \Simplon\Abstracts\iAbstractRequest
   {
-    public function getId();
+    public function getStoryId();
   }

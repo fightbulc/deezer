@@ -24,6 +24,11 @@
           'vo' => 'getStory',
         ),
 
+        'votes' => array(
+          'vo' => 'getVotes',
+          'default' => 0,
+        ),
+
         'created' => array(
           'vo' => 'getCreated',
           'format' => function($date)

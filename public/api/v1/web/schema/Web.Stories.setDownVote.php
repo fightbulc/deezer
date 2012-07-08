@@ -4,7 +4,7 @@
     'params'   => array(
 
       'accessToken' => 'string',
-      'memoryId'    => 'integer',
+      'storyId'    => 'integer',
 
     ),
 

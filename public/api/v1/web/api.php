@@ -26,15 +26,15 @@
       // memories
       'Web.Memories.createMemory',
       'Web.Memories.getByTrackId',
-      'Web.Memories.setUpVote',
-      'Web.Memories.setDownVote',
-      'Web.Memories.removeVote',
 //      'Web.Memories.getByMoodName',
 //      'Web.Memories.getByUserId',
 
       // story
       'Web.Stories.createStory',
       'Web.Stories.getByTrackId',
+      'Web.Stories.setUpVote',
+      'Web.Stories.setDownVote',
+      'Web.Stories.removeVote',
 //      'Web.Stories.getByUserId',
 
       // users

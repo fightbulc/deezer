@@ -28,11 +28,14 @@
     {
       return "
       SELECT
-        *
+        story.*,
+        SUM(sv.vote) AS votes
       FROM
         stories AS story
+        LEFT JOIN story_votes AS sv ON sv.story_id = story.id
       WHERE
         story.id = :storyId
+      GROUP BY story.id
       ";
     }
 
@@ -70,11 +73,14 @@
     {
       return "
       SELECT
-        *
+        story.*,
+        SUM(sv.vote) AS votes
       FROM
         stories AS story
+        LEFT JOIN story_votes AS sv ON sv.story_id = story.id
       WHERE
         story.track_id = :trackId
+      GROUP BY story.id
       ";
     }
 
@@ -130,5 +136,154 @@
         ->setData($data);
 
       return $this->insert($dbCacheQuery);
+    }
+
+    // ##########################################
+
+    /**
+     * @param $storyId
+     * @param $userId
+     * @param $data
+     * @return bool
+     */
+    protected function _InsertUpdateStoryUserVote($storyId, $userId, $data)
+    {
+      $sqlQuery = 'SELECT story_id FROM story_votes WHERE story_id = :storyId AND user_id = :userId';
+
+      $sqlConditions = array(
+        'storyId' => $storyId,
+        'userId'   => $userId,
+      );
+
+      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+
+      $dbCacheQuery
+        ->setSqlQuery($sqlQuery)
+        ->setSqlConditions($sqlConditions);
+
+      $isInDb = NULL;
+      $isInDb = $this->fetchColumn($dbCacheQuery);
+
+      if ($isInDb)
+      {
+        $result = $this->_updateStoryUserVote($data);
+      }
+      else
+      {
+        $result = $this->_insertStoryUserVote($data);
+      }
+
+      return $result;
+    }
+
+    // ##########################################
+
+    /**
+     * @param $data
+     * @return bool
+     */
+    protected function _insertStoryUserVote($data)
+    {
+      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+
+      $dbCacheQuery
+        ->setSqlTable('story_votes')
+        ->setData($data);
+
+      return $this->insert($dbCacheQuery);
+    }
+
+    // ##########################################
+
+    /**
+     * @param $data
+     * @return bool
+     */
+    protected function _updateStoryUserVote($data)
+    {
+      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+
+      $sqlConditions = array(
+        'story_id' => $data['story_id'],
+        'user_id'   => $data['user_id'],
+      );
+
+      unset($data['story_id']);
+      unset($data['user_id']);
+
+      $dbCacheQuery
+        ->setSqlTable('story_votes')
+        ->setSqlConditions($sqlConditions)
+        ->setData($data);
+
+      return $this->update($dbCacheQuery);
+    }
+
+    // ##########################################
+
+    /**
+     * @param \App\Request\Stories\rInterface\iSetUpVote $requestVo
+     * @return bool
+     */
+    public function setUpVote(\App\Request\Stories\rInterface\iSetUpVote $requestVo)
+    {
+      $userVo = $this
+        ->_getUserManager()
+        ->getUserVo($requestVo->getDeezerAccessToken());
+
+      $data = array(
+        'story_id' => $requestVo->getStoryId(),
+        'user_id'   => $userVo->getId(),
+        'vote'      => 1
+      );
+
+      return $this->_InsertUpdateStoryUserVote($requestVo->getStoryId(), $userVo->getId(), $data);
+    }
+
+    // ##########################################
+
+    /**
+     * @param \App\Request\Stories\rInterface\iSetDownVote $requestVo
+     * @return bool
+     */
+    public function setDownVote(\App\Request\Stories\rInterface\iSetDownVote $requestVo)
+    {
+      $userVo = $this
+        ->_getUserManager()
+        ->getUserVo($requestVo->getDeezerAccessToken());
+
+      $data = array(
+        'story_id' => $requestVo->getStoryId(),
+        'user_id'   => $userVo->getId(),
+        'vote'      => -1
+      );
+
+      return $this->_InsertUpdateStoryUserVote($requestVo->getStoryId(), $userVo->getId(), $data);
+    }
+
+    // ##########################################
+
+    /**
+     * @param \App\Request\Stories\rInterface\iRemoveVote $requestVo
+     * @return bool
+     */
+    public function removeVote(\App\Request\Stories\rInterface\iRemoveVote $requestVo)
+    {
+      $userVo = $this
+        ->_getUserManager()
+        ->getUserVo($requestVo->getDeezerAccessToken());
+
+      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+
+      $sqlConditions = array(
+        'story_id' => $requestVo->getStoryId(),
+        'user_id'   => $userVo->getId(),
+      );
+
+      $dbCacheQuery
+        ->setSqlTable('story_votes')
+        ->setSqlConditions($sqlConditions);
+
+      return $this->remove($dbCacheQuery);
     }
   }

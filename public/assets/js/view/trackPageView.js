@@ -5,6 +5,7 @@ define(function(require){
   var abstractView = require('abstractView');
   var DZ = require('js/deezer');
   var Data = require('js/data/data');
+  var base = require('base');
 
   var StoryCollection = require('js/collection/storyCollection');
 
@@ -98,17 +99,15 @@ define(function(require){
     // ----------------------------
 
     eventClickAddStoryButton: function(){
-      var accessToken
+      var accessToken = base.get('userWidgetView').accessToken;
       var trackId = this._trackId;
       var story = this.$('textarea#TrackStory').val();
 
-      if(trackId !== null){
-        Data.createStory(accessToken, trackId, story).done(function(){
-
+      if((trackId !== null) && (accessToken !== null)){
+        Data.createStory(accessToken, trackId, story).done(function(response){
+          storyCollection.add(response['result']);
         });
       }
-      
-      console.log(['eventClickAddStoryButton', story]);
     },
 
     // ----------------------------

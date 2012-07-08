@@ -1,22 +1,22 @@
 <center>
 
-  <form class="form-inline">
+  <form class="form-inline well">
 
     <label for="track">
-      <span>This song</span>
-      <input id="QueryTrack" name="track" type="text" />
+      <span>Song</span>
+      <input id="QueryTrack" type="text" />
     </label>
 
-    <label for="feeling" class="after-song">
+    <label for="feeling">
       <span>reminds me of</span>
-      <input id="QueryFeeling" name="feeling" type="text" />
+      <input id="QueryFeeling" type="text" />
     </label>
 
-    <button type="submit" class="btn-large btn-primary after-song">go!</button>
+    <span class="btn-large btn-primary btn-go">go!</span>
 
   </form>
 
 </center>
 
-<div id="QueryTrackResults" class="results">
-</div>
+<div id="QueryTrackResults" class="results"></div>
+<div id="QueryFeelingResults" class="results"></div>

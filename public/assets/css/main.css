@@ -11,8 +11,12 @@
 }
 
 h1 {
-  height: 100px;
   line-height: 100px;
+  background: url('/assets/img/logo.png') 50% 50% no-repeat;
+  height: 250px;
+  padding: 0;
+  margin: 0;
+  text-indent: -3000px;
 }
 
 .bubbles {
@@ -34,13 +38,23 @@ h1 {
 .bubble.bbl4 { background: #777; }
 .bubble.bbl5 { background: #0aa; }
 
+.background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: auto;
+}
+
 #pages {
   position: relative;
+  z-index: 4;
 }
 
 #userWidget {
   position: absolute;
-  top: 20px;
+  top: 30px;
   right: 0;
 }
 
@@ -51,7 +65,7 @@ h1 {
 
 #homePage .results {
   position: absolute;
-  border: 3px solid rgba(100,0,80,0.75);
+  border: 3px solid rgba(0,0,0,0.75);
   -webkit-border-radius: 7px;
   -moz-border-radius: 7px;
   border-radius: 7px;
@@ -91,5 +105,24 @@ h1 {
   font-weight: normal;
 }
 
-#homePage .after-song {
+label {
+  font-size: 20px;
+}
+
+label input {
+  font-size: 15px;
+  margin: 0 5px;
+}
+
+.btn-go {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  padding: 0;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
 }

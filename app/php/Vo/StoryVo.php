@@ -32,6 +32,13 @@
 
     // ##########################################
 
+    public function getVotes()
+    {
+      return $this->getByKey('votes');
+    }
+
+    // ##########################################
+
     public function getCreated()
     {
       return $this->getByKey('created');

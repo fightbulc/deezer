@@ -73,11 +73,11 @@
     public function setUpVote($request)
     {
       // create requestVo
-      $requestVo = new \App\Request\Memories\rSetUpVote();
+      $requestVo = new \App\Request\Stories\rSetUpVote();
       $requestVo->setData($request);
 
       // save memory
-      $manager = new \App\Manager\Memories\MemoriesManager();
+      $manager = new \App\Manager\Stories\StoriesManager();
       $result = $manager->setUpVote($requestVo);
 
       return array('created' => TRUE);
@@ -92,11 +92,11 @@
     public function setDownVote($request)
     {
       // create requestVo
-      $requestVo = new \App\Request\Memories\rSetDownVote();
+      $requestVo = new \App\Request\Stories\rSetDownVote();
       $requestVo->setData($request);
 
       // save memory
-      $manager = new \App\Manager\Memories\MemoriesManager();
+      $manager = new \App\Manager\Stories\StoriesManager();
       $result = $manager->setDownVote($requestVo);
 
       return array('created' => TRUE);
@@ -111,11 +111,11 @@
     public function removeVote($request)
     {
       // create requestVo
-      $requestVo = new \App\Request\Memories\rRemoveVote();
+      $requestVo = new \App\Request\Stories\rRemoveVote();
       $requestVo->setData($request);
 
       // save memory
-      $manager = new \App\Manager\Memories\MemoriesManager();
+      $manager = new \App\Manager\Stories\StoriesManager();
       $result = $manager->removeVote($requestVo);
 
       return array('created' => TRUE);

@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.5.25-log)
 # Database: deezer
-# Generation Time: 2012-07-08 10:59:49 +0000
+# Generation Time: 2012-07-08 14:04:19 +0000
 # ************************************************************
 
 
@@ -56,40 +56,43 @@ VALUES
 	(16,4,6026499,'rage',1341665124),
 	(17,1,6026499,'exhausted',1341675109),
 	(18,1,6026499,'exhausted',1341675141),
-	(19,1,6026499,'exhausted',1341675170),
+	(19,1,6026499,'happy',1341675170),
 	(20,1,6026499,'exhausted',1341675195),
 	(21,45403071,6026499,'exhausted',1341696769),
 	(22,45403071,6026499,'sunny',1341739052),
 	(23,45403071,6026499,'sunny',1341744892),
-	(24,45403071,6026499,'sunny',1341744902);
+	(24,45403071,6026499,'sunny',1341744902),
+	(25,45403071,3147243,'growing grass',1341755116),
+	(26,45403071,3147243,'growinggrass',1341755519),
+	(27,45403071,3147243,'growing-grass',1341755578),
+	(28,45403071,13236642,'good-times',1341755945),
+	(29,45403071,2221576,'booyaaa',1341756223);
 
 /*!40000 ALTER TABLE `memories` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
-# Dump of table memory_votes
+# Dump of table story_votes
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `memory_votes`;
+DROP TABLE IF EXISTS `story_votes`;
 
-CREATE TABLE `memory_votes` (
-  `memory_id` bigint(20) unsigned NOT NULL,
+CREATE TABLE `story_votes` (
+  `story_id` bigint(20) unsigned NOT NULL,
   `user_id` bigint(20) NOT NULL,
   `vote` tinyint(1) NOT NULL,
-  KEY `byMemoryId` (`memory_id`,`user_id`,`vote`),
-  KEY `byUserId` (`user_id`,`memory_id`,`vote`)
+  KEY `byMemoryId` (`story_id`,`user_id`,`vote`),
+  KEY `byUserId` (`user_id`,`story_id`,`vote`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-LOCK TABLES `memory_votes` WRITE;
-/*!40000 ALTER TABLE `memory_votes` DISABLE KEYS */;
+LOCK TABLES `story_votes` WRITE;
+/*!40000 ALTER TABLE `story_votes` DISABLE KEYS */;
 
-INSERT INTO `memory_votes` (`memory_id`, `user_id`, `vote`)
+INSERT INTO `story_votes` (`story_id`, `user_id`, `vote`)
 VALUES
-	(14,1,-1),
-	(14,2,1),
-	(14,3,-1);
+	(3,45403071,1);
 
-/*!40000 ALTER TABLE `memory_votes` ENABLE KEYS */;
+/*!40000 ALTER TABLE `story_votes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -114,7 +117,8 @@ LOCK TABLES `stories` WRITE;
 INSERT INTO `stories` (`id`, `track_id`, `user_id`, `story`, `created`)
 VALUES
 	(1,6026499,45403071,'Foozle.',1341738968),
-	(2,6026499,45403071,'Foozle.',1341739604);
+	(2,6026499,45403071,'Foozle.',1341739604),
+	(3,6026499,45403071,'Foozle.',1341749535);
 
 /*!40000 ALTER TABLE `stories` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -132,6 +136,17 @@ CREATE TABLE `tracks` (
   UNIQUE KEY `byId` (`id`,`artist`,`title`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `tracks` WRITE;
+/*!40000 ALTER TABLE `tracks` DISABLE KEYS */;
+
+INSERT INTO `tracks` (`id`, `artist`, `title`)
+VALUES
+	(2221576,'Big Pun featuring Joe','Still Not A Player'),
+	(3147243,'Radiohead','Creep (Acoustic)'),
+	(13236642,'Plattenpapzt feat. Kool Savas','King Of Rap');
+
+/*!40000 ALTER TABLE `tracks` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table users

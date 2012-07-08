@@ -3,8 +3,7 @@
   return array(
     'params'   => array(
 
-      'accessToken' => 'string',
-      'memoryId'    => 'integer',
+      'id'       => 'integer',
 
     ),
 
@@ -12,7 +11,11 @@
 
     'response' => array(
 
-      'created' => TRUE
+      'id',
+      'trackId',
+      'userId',
+      'story',
+      'created',
 
     ),
 

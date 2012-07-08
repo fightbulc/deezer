@@ -24,6 +24,48 @@
     /**
      * @return string
      */
+    protected function _getByIdQuery()
+    {
+      return "
+      SELECT
+        *
+      FROM
+        stories AS story
+      WHERE
+        story.id = :storyId
+      ";
+    }
+
+    // ##########################################
+
+    /**
+     * @param \App\Request\Stories\rInterface\iGetById $requestVo
+     * @return \Simplon\Abstracts\AbstractVo
+     */
+    public function getById(\App\Request\Stories\rInterface\iGetById $requestVo)
+    {
+      $sqlQuery = $this->_getByIdQuery();
+
+      $conditions = array(
+        'storyId' => $requestVo->getId(),
+      );
+
+      $dbCacheQuery = new \Simplon\Lib\Db\DbCacheQuery();
+
+      $dbCacheQuery
+        ->setSqlQuery($sqlQuery)
+        ->setSqlConditions($conditions);
+
+      $story = $this->fetchRow($dbCacheQuery);
+
+      return \App\Factory\VoFactory::singleFactory($story, new \App\Vo\StoryVo());
+    }
+
+    // ##########################################
+
+    /**
+     * @return string
+     */
     protected function _getByTrackIdQuery()
     {
       return "

@@ -14,11 +14,34 @@
       $requestVo = new \App\Request\Stories\rCreateStory();
       $requestVo->setData($request);
 
-      // save memory
+      // save story
       $manager = new \App\Manager\Stories\StoriesManager();
-      $result = $manager->createStory($requestVo);
+      $storyId = $manager->createStory($requestVo);
 
-      return array('created' => $result > 0 ? TRUE : FALSE);
+      // get story
+      $storyDto = $this->getById(array('id' => $storyId));
+
+      return $storyDto;
+    }
+
+    // ##########################################
+
+    /**
+     * @param $request
+     * @return array
+     */
+    public function getById($request)
+    {
+      // create requestVo
+      $requestVo = new \App\Request\Stories\rGetById();
+      $requestVo->setData($request);
+
+      // get story
+      $manager = new \App\Manager\Stories\StoriesManager();
+      $storyVo = $manager->getById($requestVo);
+      $storyDto = \App\Factory\DtoFactory::singleFactory($storyVo, new \App\Dto\Stories\StoriesByIdDto());
+
+      return $storyDto;
     }
 
     // ##########################################
@@ -33,7 +56,7 @@
       $requestVo = new \App\Request\Stories\rGetByTrackId();
       $requestVo->setData($request);
 
-      // get memories
+      // get stories
       $manager = new \App\Manager\Stories\StoriesManager();
       $storiesVo = $manager->getByTrackId($requestVo);
       $storiesDto = \App\Factory\DtoFactory::factory($storiesVo, new \App\Dto\Stories\StoriesByTrackDto());
@@ -96,35 +119,5 @@
       $result = $manager->removeVote($requestVo);
 
       return array('created' => TRUE);
-    }
-
-    // ##########################################
-
-    /**
-     * @param $request
-     * @return array
-     */
-    public function getByMoodName($request)
-    {
-    }
-
-    // ##########################################
-
-    /**
-     * @param $request
-     * @return array
-     */
-    public function getByMoodId($request)
-    {
-    }
-
-    // ##########################################
-
-    /**
-     * @param $request
-     * @return array
-     */
-    public function getByUserId($request)
-    {
     }
   }

@@ -1,7 +1,7 @@
 <?php
 
   return array(
-    'params' => array(
+    'params'   => array(
 
       'trackId' => 'integer',
 

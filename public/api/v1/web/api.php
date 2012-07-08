@@ -12,7 +12,7 @@
     'validServices' => array(
 
       // collections
-//      'Web.Collections.getByTrackId',
+      'Web.Collections.getByTrackId',
 //      'Web.Collections.getByMoodTag',
 
       // moods

@@ -51,9 +51,6 @@ define(function(require){
       that.$el.html(template.render({}));
       this.$el.show();
 
-      that.$('#memoriesHeader').html(templateTagPageHeader.render({
-        tag: tag
-      }));
 
       Data.getWebCollectionsGetByMoodTag(tag).done(function(response){
         if(_.has(response, 'result')){
@@ -62,6 +59,12 @@ define(function(require){
           // random track
 
           var randomTrack = response['result']['randomTrack'];
+
+          that.$('#memoriesHeader').html(templateTagPageHeader.render({
+            tag: tag,
+            title: randomTrack['trackTitle'],
+            artist: randomTrack['artistName']
+          }));
 
           that._trackId = randomTrack['id'];
 
@@ -131,9 +134,12 @@ define(function(require){
     // refactor to trackPage
     eventClickAddStoryButton: function(){
       if(this._trackId !== null){
+        var view = this;
+
         var accessToken = base.get('userWidgetView').accessToken;
         var trackId = this._trackId;
         var story = this.$('textarea#TrackStory').val();
+        this.$('textarea#TrackStory').val('');
 
         if((trackId !== null) && (accessToken !== null)){
           Data.createStory(accessToken, trackId, story).done(function(response){

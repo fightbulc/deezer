@@ -16,7 +16,7 @@ define(function(require){
   var templateTrackPageHeader = hogan.compile(require('text!templates/trackPageHeader.mustache'));
   var templateRelatedTracks = hogan.compile(require('text!templates/tracksRelatedToMood.mustache'));
   var templateRelatedMoods = hogan.compile(require('text!templates/moodsRelatedToTrack.mustache'));
-  var templateStories = hogan.compile(require('text!templates/storiesOnTrackPage.mustache'));
+  var templateStory = hogan.compile(require('text!templates/storyOnTrackPage.mustache'));
   // ##########################################
 
   var trackPageView = abstractView.extend({
@@ -33,9 +33,9 @@ define(function(require){
 
       this._trackId = null;
 
-      storyCollection.on('add', this.renderStories, this);
-      storyCollection.on('remove', this.renderStories, this);
-      storyCollection.on('reset', this.renderStories, this);
+      storyCollection.on('add', this.renderStoriesAdd, this);
+      storyCollection.on('remove', this.renderStoriesReset, this);
+      storyCollection.on('reset', this.renderStoriesReset, this);
 
     },
 
@@ -88,12 +88,22 @@ define(function(require){
 
     },
 
-    renderStories: function(){
-        var renderedStories = templateStories.render({
-          'stories':storyCollection.toJSON()
-        });
+    renderStoriesAdd: function(model){
+      var rendered = templateStory.render(model.toJSON());
 
-        this.$('#TrackStories').html(renderedStories);
+      this.$('#TrackStories ul').prepend(rendered);
+    },
+
+    renderStoriesReset: function(){
+      var view = this;
+
+      view.$('#TrackStories ul').html(null);
+
+      storyCollection.each(function(storyModel){
+        var rendered = templateStory.render(storyModel.toJSON());
+
+        view.$('#TrackStories ul').prepend(rendered);
+      })
     },
 
     // ----------------------------

@@ -4,17 +4,18 @@ define(function(require){
   var Data = require('js/data/data');
 
   var storyCollection = abstractCollection.extend({
-    search: function(trackId){
-      var collection = this;
+    // search: function(trackId){
+    //   alert('storyCollection search should not be called');
+    //   var collection = this;
 
-      Data.getStories(trackId).done(function(response){
-        console.log(['getStories', response]);
+    //   Data.getStories(trackId).done(function(response){
+    //     console.log(['getStories', response]);
 
-        if(_.has(response, 'result')){
-          collection.reset(response['result']);
-        }
-      });
-    }
+    //     if(_.has(response, 'result')){
+    //       collection.reset(response['result']);
+    //     }
+    //   });
+    // }
   });
 
   return storyCollection;

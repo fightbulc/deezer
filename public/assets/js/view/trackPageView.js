@@ -64,6 +64,32 @@ define(function(require){
   			});
     	});
 
+      Data.getWebCollectionsGetByTrackId(trackId).done(function(response){
+          console.log(['the track is == '+trackId, 'track collection', response]);
+
+          // stories
+
+          storyCollection.add(response['result']['stories']);
+
+          // moods
+
+          var renderedRelatedMoods = templateRelatedMoods.render({
+            'moods':response['result']['moods']
+          });
+
+          that.$('#RelatedMoods').html(renderedRelatedMoods);
+
+          // tracks
+          
+          var renderedRelatedTracks = templateRelatedTracks.render({
+            'tracks':response['result']['tracks']
+          });
+
+          that.$('#RelatedTracks').html(renderedRelatedTracks);
+
+
+      });
+
       Data.getMoodsByTrackId(trackId).done(function(response){
         console.log(['getMoodsByTrackId', response]);
 
@@ -74,8 +100,6 @@ define(function(require){
         that.$('#RelatedMoods').html(renderedRelatedMoods);
       });
       
-      storyCollection.search(trackId);
-
     },
 
     renderStoriesAdd: function(model){

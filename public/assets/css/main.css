@@ -161,6 +161,7 @@ label input {
 {
     width:570px;
     height:100px;
+    resize: none;
 }
 
 #TrackStories ul

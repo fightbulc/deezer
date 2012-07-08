@@ -14,7 +14,7 @@ define(function(require){
       "!/home": "home",
       "!/test": "test",
       "!/track/:id": "track",
-      "!/track/:id/:tag": "track",
+      "!/memory/:tag": "memory",
       "*default": "default"
     },
 
@@ -34,6 +34,10 @@ define(function(require){
       if(!base.has('testPageView')){ base.set('testPageView', new testPageView); }
       this.switchPage();
       base.get('testPageView').render();
+    },
+
+    memory: function(){
+
     },
 
     default: function(){

@@ -1,6 +1,6 @@
 <ul class="unstyled">
   {{#tracks}}
-  <li data-deezerTrackId="{{id}}">
+  <li data-track-id="{{id}}" data-track-metas="{{artist.name}} - {{title}}">
     <b>{{artist.name}}</b> {{title}}
   </li>
   {{/tracks}}

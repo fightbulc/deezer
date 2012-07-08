@@ -54,7 +54,7 @@ define(function(require){
 
       Data.getWebCollectionsGetByMoodTag(tag).done(function(response){
         if(_.has(response, 'result')){
-          console.log(['tag collection', response]);
+          console.log(['the tag is == '+tag, 'tag collection', response]);
 
           // random track
 
@@ -74,13 +74,24 @@ define(function(require){
 
           that.$('#RelatedMoods').html(renderedRelatedMoods);
 
+          // tracks
+
+          console.log(['tracks from collection', response['result']['tracks']]);
+
+          var renderedRelatedTracks = templateRelatedTracks.render({
+            'tracks':response['result']['tracks']
+          });
+
+          that.$('#RelatedTracks').html(renderedRelatedTracks);
+
+
           // deezer player
 
           DZ.promisePlayerOnLoad.done(function(){
             DZ.player.playTracks([randomTrack['id']], 0, function(response){
               var track = randomTrack['trackTitle'];
               var artist = randomTrack['artistName'];
-              
+
               that.$player.addClass('active');
             });
           });

@@ -120,7 +120,9 @@ define(function(require){
     selectTrack: function(e){
       var $item = $(e.currentTarget);
       this.selectedTrack = Number($item.data('track-id'));
-      this.$('#QueryTrack').val($item.data('track-metas'));
+      this.selectedTrackName = $item.data('track-name');
+      this.selectedTrackArtist = $item.data('track-artist');
+      this.$('#QueryTrack').val($item.data('track-artist')+' - '+$item.data('track-name'));
       this.getMoods(this.selectedTrack);
     },
 
@@ -193,8 +195,19 @@ define(function(require){
 
     saveMood: function(){
       var userWidgetView = base.get('userWidgetView');
+      var that = this;
       if(userWidgetView.accessToken === null){
         userWidgetView.login();
+      }else{
+        Data.api('Web.Memories.createMemory', [{
+          'accessToken': userWidgetView.accessToken,
+          'moodTag': $('#QueryFeeling').val(),
+          'trackId': this.selectedTrack,
+          'artistName': this.selectedTrackArtist,
+          'trackTitle': this.selectedTrackName
+        }]).done(function(){
+          base.get('router').redirect('track/'+that.selectedTrack);
+        });
       }
     }
   });

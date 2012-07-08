@@ -20,15 +20,24 @@ define(function(require){
   var homePageView = abstractView.extend({
     el: '#homePage',
 
+    // ----------------------------
+
     events: {
+      'focus #QueryTrack': 'eventTrackInputChange',
       'keyup #QueryTrack': 'eventTrackInputChange',
-      'change #QueryTrack': 'eventTrackInputChange',
+      'blur #QueryTrack': 'eventTrackInputBlur',
+
+      'click #QueryTrackResults li': 'selectTrack',
 
       'keyup #QueryFeeling': 'eventFeelingInputChange',
       'change #QueryFeeling': 'eventFeelingInputChange'
     },
 
+    // ----------------------------
+
     initialize: function(){
+      this.selectedTrack = 0;
+
       trackSearchCollection.on('add', this.renderSearchResults, this);
       trackSearchCollection.on('remove', this.renderSearchResults, this);
       trackSearchCollection.on('reset', this.renderSearchResults, this);
@@ -37,8 +46,11 @@ define(function(require){
       this.eventFeelingInputChange = _.debounce(this.eventFeelingInputChange, 500);
     },
 
+    // ----------------------------
+
     eventTrackInputChange: function(){
 
+      this.selectedTrack = 0;
       var query = this.$('#QueryTrack').val();
 
       console.log(['eventTrackInputChange', query]);
@@ -47,12 +59,26 @@ define(function(require){
 
     },
 
+    // ----------------------------
+
     eventFeelingInputChange: function(){
 
       var inputValue = this.$('#QueryFeeling').val();
-
       console.log(['eventTrackInputChange', inputValue]);
 
+    },
+
+    // ----------------------------
+
+    eventTrackInputBlur: function(){
+      var that = this;
+      setTimeout(function(){
+        that.$('#QueryTrackResults').stop().hide();
+        if(that.selectedTrack === 0){
+          console.log(['no track selected', that.$('#QueryTrackResults li').first()]);
+          that.$('#QueryTrackResults li').first().click();
+        }
+      }, 300);
     },
 
     // ----------------------------
@@ -60,18 +86,46 @@ define(function(require){
     render: function(){
       this.$el.html(template.render());
       this.$el.show();
-      //this.renderBubbles();
 
       return this;
     },
 
+    // ----------------------------
+
     renderSearchResults: function(){
 
-      this.$('#QueryTrackResults').html(templateSearchResults.render({
-        'tracks':trackSearchCollection.toJSON()
-      }));
+      var results = trackSearchCollection.toJSON();
+      if(results.length){
+
+        this.$('#QueryTrackResults').html(templateSearchResults.render({
+          'tracks':trackSearchCollection.toJSON()
+        })).css(this.getFieldPosition('QueryTrack')).fadeIn().show();
+
+      }else{
+        this.$('#QueryTrackResults').hide();
+      }
 
       return this;
+    },
+
+    // ----------------------------
+
+    selectTrack: function(e){
+      var $item = $(e.currentTarget);
+      this.selectedTrack = Number($item.data('track-id'));
+      this.$('#QueryTrack').val($item.data('track-metas'));
+    },
+
+    // ----------------------------
+
+    getFieldPosition: function(id){
+      var offset = this.$('#'+id).offset();
+      var pageOffset = this.$el.offset();
+
+      return {
+        left: offset.left - pageOffset.left,
+        top: offset.top - pageOffset.top + 30
+      };
     },
 
     // ----------------------------

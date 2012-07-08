@@ -114,6 +114,8 @@ h1 a span {
   font-size: 40px;
   line-height: 45px;
   font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 #RelatedMoods h6, #RelatedTracks h6 {

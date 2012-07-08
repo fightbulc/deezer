@@ -1,11 +1,11 @@
 <?php
 
   return array(
-    'params' => array(
+    'params'   => array(
 
       'accessToken' => 'string',
-      'trackId' => 'integer',
-      'story' => 'string',
+      'trackId'     => 'integer',
+      'story'       => 'string',
 
     ),
 

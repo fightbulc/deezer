@@ -1,10 +1,10 @@
 <?php
 
   return array(
-    'params' => array(
+    'params'   => array(
 
       'accessToken' => 'string',
-      'memoryId' => 'integer',
+      'memoryId'    => 'integer',
 
     ),
 

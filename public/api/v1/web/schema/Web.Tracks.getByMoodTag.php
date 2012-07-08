@@ -1,7 +1,7 @@
 <?php
 
   return array(
-    'params' => array(
+    'params'   => array(
 
       'moodTag' => 'string',
 
@@ -11,11 +11,13 @@
 
     'response' => array(
 
-        array(
-            'id',
-            'amount',
-            'moodTag',
-        ),
+      array(
+        'id',
+        'artistName',
+        'trackTitle',
+        'amount',
+        'moodTag',
+      ),
 
     ),
 

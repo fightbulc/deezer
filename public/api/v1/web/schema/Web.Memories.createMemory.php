@@ -1,11 +1,13 @@
 <?php
 
   return array(
-    'params' => array(
+    'params'   => array(
 
       'accessToken' => 'string',
-      'trackId' => 'integer',
-      'moodTag' => 'string',
+      'moodTag'     => 'string',
+      'trackId'     => 'integer',
+      'artistName'  => 'string',
+      'trackTitle'  => 'string',
 
     ),
 

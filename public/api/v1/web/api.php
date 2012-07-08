@@ -13,7 +13,7 @@
 
       // collections
       'Web.Collections.getByTrackId',
-//      'Web.Collections.getByMoodTag',
+      'Web.Collections.getByMoodTag',
 
       // moods
       'Web.Moods.getByTrackId',

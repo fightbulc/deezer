@@ -47,8 +47,8 @@ define(function(require){
     return api('Web.Tracks.getByMoodTag', [{moodTag:moodTag}]);
   };
 
-  _module.getMemories = function(trackId, mood){
-    
+  _module.getStories = function(trackId){
+    return api('Web.Stories.getByTrackId', [{trackId:trackId}]);
   };
 
   return _module;

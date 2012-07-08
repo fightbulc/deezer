@@ -6,10 +6,16 @@ define(function(require){
   var DZ = require('js/deezer');
   var Data = require('js/data/data');
 
+  var StoryCollection = require('js/collection/storyCollection');
+
+  var storyCollection = new StoryCollection({});
+  GLOBAL_storyCollection = storyCollection;
+
   var template = hogan.compile(require('text!templates/trackPage.mustache'));
   var templateTrackPageHeader = hogan.compile(require('text!templates/trackPageHeader.mustache'));
   var templateRelatedTracks = hogan.compile(require('text!templates/tracksRelatedToMood.mustache'));
   var templateRelatedMoods = hogan.compile(require('text!templates/moodsRelatedToTrack.mustache'));
+  var templateStories = hogan.compile(require('text!templates/storiesOnTrackPage.mustache'));
   // ##########################################
 
   var trackPageView = abstractView.extend({
@@ -19,6 +25,11 @@ define(function(require){
 
     initialize: function(){
       this.$player = $('#deezerPlayer');
+
+      storyCollection.on('add', this.renderStories, this);
+      storyCollection.on('remove', this.renderStories, this);
+      storyCollection.on('reset', this.renderStories, this);
+
     },
 
     // ----------------------------
@@ -44,7 +55,7 @@ define(function(require){
   			});
     	});
 
-      Data.getMoodsByTrackId('234234').done(function(response){
+      Data.getMoodsByTrackId(trackId).done(function(response){
         console.log(['getMoodsByTrackId', response]);
 
         var renderedRelatedMoods = templateRelatedMoods.render({
@@ -54,15 +65,26 @@ define(function(require){
         $('#RelatedMoods').html(renderedRelatedMoods);
       });
 
-      Data.getTracksByMoodName('happy').done(function(response){
-        console.log(['getTracksByMoodName', response]);
+      // Data.getTracksByMoodName('happy').done(function(response){
+      //   console.log(['getTracksByMoodName', response]);
 
-        var renderedRelatedTracks = templateRelatedTracks.render({
-          'tracks':response['result']
+      //   var renderedRelatedTracks = templateRelatedTracks.render({
+      //     'tracks':response['result']
+      //   });
+
+      //   $('#RelatedTracks').html(renderedRelatedTracks);
+      // });
+
+      storyCollection.search(trackId);
+
+    },
+
+    renderStories: function(){
+        var renderedStories = templateStories.render({
+          'stories':storyCollection.toJSON()
         });
 
-        $('#RelatedTracks').html(renderedRelatedTracks);
-      });
+        $('#TrackStories').html(renderedStories);
     },
 
     // ----------------------------

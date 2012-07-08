@@ -42,7 +42,7 @@ define(function(require){
 
     render: function(trackId){
       storyCollection.reset();
-      
+
       this._trackId = trackId;
 
       var that = this;
@@ -133,6 +133,7 @@ define(function(require){
       var accessToken = base.get('userWidgetView').accessToken;
       var trackId = this._trackId;
       var story = this.$('textarea#TrackStory').val();
+      this.$('textarea#TrackStory').val('');
 
       if((trackId !== null) && (accessToken !== null)){
         Data.createStory(accessToken, trackId, story).done(function(response){
